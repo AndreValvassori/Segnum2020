@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Segnum2020</string>
+    <string name="titulo">Segnum</string>
+    <string name="login">Login</string>
+    <string name="loginFacebook">Continuar com o Facebook</string>
+    <string name="email">Email</string>
+    <string name="meuemail">meuemail@provedor.com</string>
+    <string name="notregisteredyet">Ainda não sou cadastrado</string>
+    <string name="pass">Senha</string>
+    <string name="mypass">Sua Senha</string>
+    <string name="newuser">Novo Usuário</string>
+    <string name="nome">Nome</string>
+    <string name="nomecompleto">Seu nome completo</string>
+    <string name="telefone">Telefone</string>
+    <string name="telefonevalue">41 9 1234 5678</string>
+    <string name="datanascimento">Data de Nascimento</string>
+    <string name="registrar">Registrar-se</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
