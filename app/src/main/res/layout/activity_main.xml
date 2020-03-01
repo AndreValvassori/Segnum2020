@@ -1,18 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="50dp"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="130dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/ly_login_TopSegnum"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_media_ff"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Segnum"
+            android:textAlignment="center"
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-black"
+            android:textSize="30dp"
+            android:textColor="@android:color/holo_green_dark"
+        />
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:layout_below="@+id/ly_login_TopSegnum"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="Email"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_login_email"
+        />
+
+    <EditText
+        android:id="@+id/et_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_login_email"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="0dp"
+        android:textAlignment="textStart"
+        android:hint="meuemail@provedor.com"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:layout_below="@+id/et_login_email"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="Senha"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/tv_login_pass"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/et_login_pass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_login_pass"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="0dp"
+        android:textAlignment="textStart"
+        android:text=""
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btn_login_login"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/et_login_pass"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:background="@drawable/roundedbutton"
+        android:text="Login"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:id="@+id/btn_login_facebook"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/btn_login_login"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="#4267B2"
+        android:text="Continuar com o Facebook"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tv_login_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/btn_login_facebook"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textEnd"
+        android:text="Ainda não sou cadastrado"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textStyle="bold"/>
+
+</RelativeLayout>
