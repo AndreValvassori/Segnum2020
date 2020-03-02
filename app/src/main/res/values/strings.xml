@@ -16,4 +16,11 @@
     <string name="datanascimento">Data de Nascimento</string>
     <string name="registrar">Registrar-se</string>
     <string name="cancelar">Cancelar</string>
+    
+    
+    <string-array name="arraytypes">
+        <item>Roubo</item>
+        <item>Indivíduo suspeito</item>
+        <item>Drogas</item>
+    </string-array>
 </resources>
