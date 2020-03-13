@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.andrevalvassori.segnum2020.LoginActivity">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -92,15 +92,15 @@
         android:layout_height="45dp"
         android:layout_below="@+id/et_login_pass"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@android:color/holo_green_dark"
+        android:layout_marginRight="50dp"
         android:background="@drawable/roundedbutton"
+        android:backgroundTint="@android:color/holo_green_dark"
+        android:onClick="btnLoginOnClick"
         android:text="@string/login"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:textSize="18sp"
-        />
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btn_login_facebook"
@@ -108,14 +108,15 @@
         android:layout_height="45dp"
         android:layout_below="@+id/btn_login_login"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/roundedbutton"
         android:backgroundTint="#4267B2"
+        android:onClick="btnFacebookOnClick"
         android:text="@string/loginFacebook"
         android:textColor="@android:color/white"
-        android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginTop="5dp"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_login_cadastro"
@@ -123,11 +124,13 @@
         android:layout_height="30dp"
         android:layout_below="@id/btn_login_facebook"
         android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="10dp"
-        android:textAlignment="textEnd"
+        android:layout_marginRight="50dp"
+        android:clickable="true"
+        android:onClick="btnRegisterOnClick"
         android:text="@string/notregisteredyet"
+        android:textAlignment="textEnd"
         android:textColor="@android:color/holo_blue_dark"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </RelativeLayout>

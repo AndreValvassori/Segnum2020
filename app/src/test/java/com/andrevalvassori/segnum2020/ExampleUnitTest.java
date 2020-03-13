@@ -1,4 +1,4 @@
-package com.example.segnum2020;
+package com.andrevalvassori.segnum2020;
 
 import org.junit.Test;
 

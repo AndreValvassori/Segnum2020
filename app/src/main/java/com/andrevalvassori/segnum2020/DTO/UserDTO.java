@@ -1,11 +1,8 @@
-package com.example.segnum2020.DTO;
-
-import androidx.annotation.NonNull;
+package com.andrevalvassori.segnum2020.DTO;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 public class UserDTO {
 
@@ -14,6 +11,9 @@ public class UserDTO {
     private String email;
     private String phone;
     private Date birthday;
+
+    private String password;
+
 
     private List<ProfileDTO> profiles = new ArrayList<>();
 
@@ -110,5 +110,9 @@ public class UserDTO {
                 ", birthday=" + birthday +
                 ", profiles=" + profiles +
                 '}';
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.segnum2020.DTO;
+package com.andrevalvassori.segnum2020.DTO;
 
 public class ProfileDTO {
 

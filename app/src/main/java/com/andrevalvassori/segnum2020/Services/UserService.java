@@ -1,6 +1,6 @@
-package com.example.segnum2020.Services;
+package com.andrevalvassori.segnum2020.Services;
 
-import com.example.segnum2020.DTO.UserDTO;
+import com.andrevalvassori.segnum2020.DTO.UserDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
