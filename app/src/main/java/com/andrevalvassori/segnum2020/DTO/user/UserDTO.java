@@ -1,8 +1,14 @@
-package com.andrevalvassori.segnum2020.DTO;
+package com.andrevalvassori.segnum2020.DTO.user;
+
+
+
+import com.andrevalvassori.segnum2020.Model.Enums.Profile;
+import com.andrevalvassori.segnum2020.Model.User;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class UserDTO {
 
@@ -11,9 +17,6 @@ public class UserDTO {
     private String email;
     private String phone;
     private Date birthday;
-
-    private String password;
-
 
     private List<ProfileDTO> profiles = new ArrayList<>();
 
@@ -27,24 +30,24 @@ public class UserDTO {
         this.phone = phone;
         this.birthday = birthday;
     }
-//
-//    public UserDTO(int id, String name, String email, String phone, Date birthday/*, List<ProfileDTO> profiles*/) {
-//        this.id = id;
-//        this.name = name;
-//        this.email = email;
-//        this.phone = phone;
-//        this.birthday = birthday;
-//        this.profiles = profiles;
-//    }
 
-  /*  public UserDTO(User user) {
+    public UserDTO(int id, String name, String email, String phone, Date birthday, List<ProfileDTO> profiles) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.birthday = birthday;
+        this.profiles = profiles;
+    }
+
+    public UserDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.phone = user.getPhone();
         this.birthday = user.getBirthday();
         this.profilesEnumToDto(user.getProfiles());
     }
-*/
+
     public int getId() {
         return id;
     }
@@ -92,27 +95,10 @@ public class UserDTO {
     public void setProfiles(List<ProfileDTO> profiles) {
         this.profiles = profiles;
     }
-//
-//    public void profilesEnumToDto(Set<Profile> enumProfiles) {
-//        enumProfiles.forEach(p -> {
-//            this.profiles.add(new ProfileDTO(p.getCode(), p.getDescription()));
-//        });
-//    }
 
-
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", birthday=" + birthday +
-                ", profiles=" + profiles +
-                '}';
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void profilesEnumToDto(Set<Profile> enumProfiles) {
+        enumProfiles.forEach(p -> {
+            this.profiles.add(new ProfileDTO(p.getCode(), p.getDescription()));
+        });
     }
 }

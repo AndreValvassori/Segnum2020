@@ -43,7 +43,7 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/mv_sendalert_map"
         android:layout_width="240dp"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_marginTop="20dp"
         android:layout_below="@id/tv_sendalert_title"
         android:layout_centerHorizontal="true"/>
@@ -58,7 +58,9 @@
         android:layout_below="@+id/mv_sendalert_map"
         android:text="Tipo"
         android:textStyle="bold"/>
+
     <LinearLayout
+        android:id="@+id/ly_sendevent_EventType"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -76,5 +78,66 @@
                 android:layout_height="match_parent"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_sendalert_Nome"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ly_sendevent_EventType"
+        android:text="Nome"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/et_sendalert_Nome"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_sendalert_Nome"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="0dp"
+        android:textAlignment="textStart"
+        android:text=""
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/tv_sendalert_Descricao"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/et_sendalert_Nome"
+        android:text="Descrição"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/et_sendalert_Descricao"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_sendalert_Descricao"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="0dp"
+        android:textAlignment="textStart"
+        android:text=""
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/btn_sendalert_enviar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@android:color/holo_green_light"
+        android:onClick="btnSendAlertOnClick"
+        android:text="Salvar!" />
 
 </RelativeLayout>

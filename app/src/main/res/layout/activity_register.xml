@@ -158,8 +158,8 @@
         android:layout_below="@id/tv_register_birthday"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:calendarTextColor="@android:color/black"
-        android:backgroundTint="@android:color/white"/>
+        android:backgroundTint="@android:color/white"
+        android:calendarTextColor="@android:color/black" />
 
     <Button
         android:id="@+id/btn_register_register"

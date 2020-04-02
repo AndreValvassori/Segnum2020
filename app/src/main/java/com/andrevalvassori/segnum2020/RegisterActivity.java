@@ -3,17 +3,21 @@ package com.andrevalvassori.segnum2020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.andrevalvassori.segnum2020.DTO.UserDTO;
+import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
+import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
 import com.andrevalvassori.segnum2020.Singleton.DataStorage;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
 
 import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button btRegister;
     Button btCancelar;
 
+    private Timer timerVerifyLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +51,52 @@ public class RegisterActivity extends AppCompatActivity {
         btCancelar = findViewById(R.id.btn_register_cancel);
 
         DataStorage.sharedInstance().setContext(this);
+
+        timerVerifyLogin = new Timer(true);
+        timerVerifyLogin.scheduleAtFixedRate(new TimerTask()
+         {
+             @Override
+             public void run() {
+                 runOnUiThread(new Runnable()
+                 {
+                     @Override
+                     public void run()
+                     {
+                         if(DataStorage.sharedInstance().GetUser() != null) {
+                             finish();
+                             timerVerifyLogin.cancel();
+                             timerVerifyLogin.purge();
+                         }
+                     }
+                 });
+             }
+         },
+        0,
+        1500
+        );
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            BackButton();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        BackButton();
+    }
+
+    private void BackButton()
+    {
+        timerVerifyLogin.cancel();
+        timerVerifyLogin.purge();
+        super.onBackPressed();
+        this.finish();
     }
 
     public void btnRegisterOnClick(View view)
@@ -57,14 +109,14 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     if(!etRegisterTelefone.getText().toString().equals(""))
                     {
-                        UserDTO newuser;
-                        newuser = new UserDTO();
+                        UserNewDTO newuser;
+                        newuser = new UserNewDTO();
                         newuser.setName(etRegisterNome.getText().toString());
                         newuser.setEmail(etRegisterEmail.getText().toString());
                         newuser.setPassword(etRegisterSenha.getText().toString());
                         newuser.setBirthday(Calendar.getInstance().getTime());
 
-                        DataStorage.sharedInstance().PostUser(newuser);
+                        DataStorage.sharedInstance().RegisterUser(newuser);
 
                     }
                 }

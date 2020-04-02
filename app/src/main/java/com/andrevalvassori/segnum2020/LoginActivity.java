@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andrevalvassori.segnum2020.DTO.UserDTO;
+import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 
 import com.andrevalvassori.segnum2020.Singleton.DataStorage;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
@@ -32,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         etLogin = findViewById(R.id.et_login_email);
         etSenha = findViewById(R.id.et_login_pass);
 
@@ -41,6 +47,26 @@ public class LoginActivity extends AppCompatActivity {
         tvRegistro = findViewById(R.id.tv_login_cadastro);
 
         DataStorage.sharedInstance().setContext(this);
+        DataStorage.sharedInstance().loadEventTypes();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("LoginActivity", "OnPause!");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(DataStorage.sharedInstance().GetUser() != null)
+        {
+            Intent intentMainActivity = new Intent(this, Main2Activity.class);
+            this.startActivity(intentMainActivity);
+        }
+
     }
 
     public void btnLoginOnClick(View view)

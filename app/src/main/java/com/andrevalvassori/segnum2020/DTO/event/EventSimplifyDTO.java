@@ -1,16 +1,24 @@
-package com.andrevalvassori.segnum2020.DTO;
+package com.andrevalvassori.segnum2020.DTO.event;
 
-public class ProfileDTO {
+
+import com.andrevalvassori.segnum2020.Model.Event;
+
+public class EventSimplifyDTO {
 
     private int id;
     private String name;
 
-    public ProfileDTO() {
+    public EventSimplifyDTO() {
     }
 
-    public ProfileDTO(int id, String name) {
+    public EventSimplifyDTO(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public EventSimplifyDTO(Event event) {
+        this.id = event.getId();
+        this.name = event.getName();
     }
 
     public int getId() {

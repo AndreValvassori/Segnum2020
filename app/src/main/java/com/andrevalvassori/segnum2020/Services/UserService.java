@@ -1,6 +1,6 @@
 package com.andrevalvassori.segnum2020.Services;
 
-import com.andrevalvassori.segnum2020.DTO.UserDTO;
+import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,9 +11,11 @@ import retrofit2.http.Path;
 public interface UserService {
 
     @POST("user")
-    Call<Object> postRegister(@Body Object object);
+    Call<Void> postRegister(@Body Object object);
 
     @GET("user/{id}")
     Call<UserDTO> getUser(@Path("id") Integer id);
 
+    @POST("user/login")
+    Call<UserDTO> postUserLogin(@Body Object object);
 }
