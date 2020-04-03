@@ -87,8 +87,8 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             DataStorage.sharedInstance().currentEvents.forEach(eventDTO ->
             {
                 LatLng position =new LatLng(
-                        Double.valueOf(eventDTO.getLocationDTO().getLx()),
-                        Double.valueOf(eventDTO.getLocationDTO().getLy()));
+                        Double.parseDouble(eventDTO.getLocationDTO().getLx()),
+                        Double.parseDouble(eventDTO.getLocationDTO().getLy()));
                 mMap.addMarker(
                         new MarkerOptions().position(position
                         ).title(eventDTO.getName())

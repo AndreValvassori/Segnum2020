@@ -227,7 +227,8 @@ public class DataStorage {
                 if(response.code() == 200 || response.code() == 201)
                 {
                     Toast.makeText (context, "Evento criado com sucesso!", Toast.LENGTH_LONG).show();
-                    String[] eventId =  response.headers().values("location").toString().split("/"); //alunoRecebido.split(";");
+                    Log.d("DataStorage",response.headers().values("location").toString().replace("]",""));
+                    String[] eventId =  response.headers().values("location").toString().replace("]","").split("/"); //alunoRecebido.split(";");
                     int insertedID = Integer.parseInt(eventId[eventId.length-1]);
 
                     sendLocation(insertedID,event, local);
