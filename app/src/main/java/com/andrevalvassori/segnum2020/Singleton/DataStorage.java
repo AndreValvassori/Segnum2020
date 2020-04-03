@@ -11,6 +11,7 @@ import androidx.core.content.IntentCompat;
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewDTO;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
+import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
 import com.andrevalvassori.segnum2020.DTO.user.CredentialsDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
@@ -19,6 +20,7 @@ import com.andrevalvassori.segnum2020.Main2Activity;
 import com.andrevalvassori.segnum2020.Model.Event;
 import com.andrevalvassori.segnum2020.Model.EventType;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,7 @@ public class DataStorage {
         {
             result = objectCall.execute().body();
             System.out.println(result);
+            DataStorage.sharedInstance().setUser(result);
         }
         catch (Exception ex)
         {
@@ -73,8 +76,8 @@ public class DataStorage {
 
         if(result != null)
             return 1;
-//        else
-//            return 0;
+        else
+            return 0;
 
 //
 //        objectCall.execute (new Callback<UserDTO>() {
@@ -100,7 +103,7 @@ public class DataStorage {
 //                Toast.makeText (context, "Falha ao registrar!", Toast.LENGTH_LONG).show();
 //            }
 //        });
-        return 1;
+//        return 1;
     }
 
     public void SetUser(UserDTO user)
@@ -213,7 +216,7 @@ public class DataStorage {
         });
     }
 
-    public void sendEvent(EventNewSimplifyDTO event)
+    public void sendEvent(EventNewSimplifyDTO event, LatLng local)
     {
         Call<Void> objectCall = new RetrofitInitialization().getEventService().postEvent(event);
 
@@ -223,9 +226,11 @@ public class DataStorage {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code() == 200 || response.code() == 201)
                 {
-                    Toast.makeText (context, "Eventro Criado com sucesso!", Toast.LENGTH_LONG).show();
+                    Toast.makeText (context, "Evento criado com sucesso!", Toast.LENGTH_LONG).show();
                     String[] eventId =  response.headers().values("location").toString().split("/"); //alunoRecebido.split(";");
+                    int insertedID = Integer.parseInt(eventId[eventId.length-1]);
 
+                    sendLocation(insertedID,event, local);
 
                     //TODO: CONTINUAR DAQUI CARAIO
                     //DataStorage.sharedInstance().UserLogin(user.getEmail(),user.getPassword());
@@ -234,10 +239,39 @@ public class DataStorage {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText (context, "Falha ao registrar!", Toast.LENGTH_LONG).show();
+                Toast.makeText (context, "Falha ao enviar evento!", Toast.LENGTH_LONG).show();
             }
         });
-        //.headers().values("location").toString()
+    }
+
+    public void sendLocation(int eventID, EventNewSimplifyDTO event, LatLng local)
+    {
+        LocationNewDTO newLocation;
+        newLocation = new LocationNewDTO();
+
+        newLocation.setId(0);
+        newLocation.setLx(String.valueOf(local.longitude));
+        newLocation.setLy(String.valueOf(local.latitude));
+        newLocation.setName(event.getName());
+        newLocation.setType(0);
+
+        Call<Void> objectCall = new RetrofitInitialization().getLocationService().postLocation(eventID,newLocation);
+
+        objectCall.enqueue(new Callback<Void>() {
+
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.code() == 200 || response.code() == 201)
+                {
+                    Toast.makeText (context, "Localização criada com sucesso!", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText (context, "Falha ao criar localização!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 }

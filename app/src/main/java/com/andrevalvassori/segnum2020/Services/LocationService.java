@@ -14,6 +14,6 @@ import retrofit2.http.Path;
 public interface LocationService {
 
     @POST("location/event/{id}")
-    Call<Void> postLocation(@Body Object object);
+    Call<Void> postLocation(@Path("id") Integer id, @Body Object object);
 
 }

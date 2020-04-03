@@ -109,9 +109,10 @@ public class SendAlert extends AppCompatActivity {
                                 } else {
                                     _lat[0] = location.getLatitude();
                                     _long[0] = location.getLongitude();
-                                    //SendAlert();
-                                    Toast.makeText(DataStorage.sharedInstance().getContext(), "Latitude: "+_lat[0]  + " Longitude: "+_long[0]+ " EventType: "+
-                                                    ((EventType) spinTypes.getSelectedItem()).getId(), Toast.LENGTH_LONG).show();
+                                    LatLng latLngLocal= new LatLng(location.getLatitude(),location.getLongitude());
+                                    SendAlert(latLngLocal);
+                                    /*Toast.makeText(DataStorage.sharedInstance().getContext(), "Latitude: "+_lat[0]  + " Longitude: "+_long[0]+ " EventType: "+
+                                                    ((EventType) spinTypes.getSelectedItem()).getId(), Toast.LENGTH_LONG).show();*/
                                 }
                             }
                         }
@@ -130,7 +131,7 @@ public class SendAlert extends AppCompatActivity {
             return null;
     }
 
-    public void SendAlert(String nome, String descricao, int tipo, LatLng local)
+    public void SendAlert(LatLng local)
     {
         EventNewSimplifyDTO newEvent;
         UserDTO currentUser = DataStorage.sharedInstance().GetUser();
@@ -142,7 +143,7 @@ public class SendAlert extends AppCompatActivity {
         newEvent.setUserId(currentUser.getId());
         newEvent.setEventTypeId(currentEventType.getId());
 
-        DataStorage.sharedInstance().sendEvent(newEvent);
+        DataStorage.sharedInstance().sendEvent(newEvent, local);
     }
 
     public void btnSendAlertOnClick(View view)
