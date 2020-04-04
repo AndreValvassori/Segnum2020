@@ -7,6 +7,8 @@ import com.andrevalvassori.segnum2020.DTO.user.UserSimplifyDTO;
 import com.andrevalvassori.segnum2020.Model.Event;
 import com.andrevalvassori.segnum2020.Model.User;
 
+import java.sql.Date;
+
 public class EventDTO {
 
     private int id;
@@ -15,6 +17,7 @@ public class EventDTO {
     private UserSimplifyDTO user;
     private EventTypeSimplifyDTO eventTypeDTO;
     private LocationSimplifyDTO locationDTO;
+    private String Created_at;
 
     public EventDTO() {
     }
@@ -88,6 +91,14 @@ public class EventDTO {
 
     public void setEventTypeDTO(EventTypeSimplifyDTO eventTypeDTO) {
         this.eventTypeDTO = eventTypeDTO;
+    }
+
+    public String getCreated_at() {
+        return Created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        Created_at = created_at;
     }
 
     @Override

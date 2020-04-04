@@ -106,12 +106,12 @@ public class DataStorage {
 //        return 1;
     }
 
-    public void SetUser(UserDTO user)
+    public void setUser(UserDTO user)
     {
         this.usuario = user;
     }
 
-    public UserDTO GetUser()
+    public UserDTO getUser()
     {
         return this.usuario;
     }
@@ -123,7 +123,7 @@ public class DataStorage {
             @Override
             public void onResponse(Call<UserDTO> call, Response<UserDTO> response)
             {
-                SetUser(response.body());
+                setUser(response.body());
             }
 
             @Override
@@ -154,11 +154,6 @@ public class DataStorage {
                 Toast.makeText (context, "Falha ao registrar!", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    public void setUser(UserDTO user)
-    {
-        this.usuario = user;
     }
 
     public void loadEventTypes()
@@ -211,7 +206,7 @@ public class DataStorage {
             @Override
             public void onFailure(Call<List<EventDTO>> call, Throwable t) {
                 DataStorage.sharedInstance().eventChange = false;
-                Log.d("DataStorage","Failed to get Events");
+                Log.d("DataStorage","Failed to get Events - " + t.getMessage());
             }
         });
     }
@@ -232,9 +227,10 @@ public class DataStorage {
                     int insertedID = Integer.parseInt(eventId[eventId.length-1]);
 
                     sendLocation(insertedID,event, local);
-
-                    //TODO: CONTINUAR DAQUI CARAIO
-                    //DataStorage.sharedInstance().UserLogin(user.getEmail(),user.getPassword());
+                }
+                else
+                {
+                    Toast.makeText (context, "Erro ao Criar evento! Código:"+response.code(), Toast.LENGTH_LONG).show();
                 }
             }
 

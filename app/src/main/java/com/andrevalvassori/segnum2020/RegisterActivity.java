@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
                      @Override
                      public void run()
                      {
-                         if(DataStorage.sharedInstance().GetUser() != null) {
+                         if(DataStorage.sharedInstance().getUser() != null) {
                              finish();
                              timerVerifyLogin.cancel();
                              timerVerifyLogin.purge();

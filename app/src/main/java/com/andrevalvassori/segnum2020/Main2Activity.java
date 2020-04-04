@@ -1,5 +1,6 @@
 package com.andrevalvassori.segnum2020;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,9 +10,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.Singleton.DataStorage;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,6 +31,9 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
     private GoogleMap mMap;
     private Timer refreshTimer;
+
+    private static final int MENU_ITEM1 = R.id.mainMenu_Item1;
+
 
     Button btnAlertas;
     Button btnMeusAlertas;
@@ -48,6 +54,13 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     }
 
     @Override
+    protected void onResume() {
+        if(DataStorage.sharedInstance().getUser() == null)
+            finish();
+        super.onResume();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
@@ -65,7 +78,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     private void BackButton()
     {
         super.onBackPressed();
-        DataStorage.sharedInstance().SetUser(null);
+        DataStorage.sharedInstance().setUser(null);
         refreshTimer.cancel();
         refreshTimer.purge();
         this.finish();
@@ -84,6 +97,25 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
             }
 
             mMap.clear();
+
+            int i = 0;
+            for (EventDTO evento: DataStorage.sharedInstance().currentEvents) {
+
+
+                LatLng position =new LatLng(
+                        Double.parseDouble(evento.getLocationDTO().getLx()),
+                        Double.parseDouble(evento.getLocationDTO().getLy()));
+                mMap.addMarker(
+                        new MarkerOptions().position(position
+                        ).title(evento.getName())
+                );
+
+                if(i++ == DataStorage.sharedInstance().currentEvents.size() - 1){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
+                }
+                Log.d("Main2Activity","Event: "+evento.toString());
+            }
+/*
             DataStorage.sharedInstance().currentEvents.forEach(eventDTO ->
             {
                 LatLng position =new LatLng(
@@ -96,7 +128,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                 //mMap.setMyLocationEnabled(true);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
                 Log.d("Main2Activity","Event: "+eventDTO.toString());
-            });
+            });*/
             //----
             DataStorage.sharedInstance().eventChange = false;
         }
@@ -128,14 +160,13 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        RefreshEvents();
-        StartEventTimer();
-
-
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        RefreshEvents();
+        StartEventTimer();
     }
 
     @Override
@@ -143,6 +174,17 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.mainmenu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_ITEM1:
+                Intent intentPerfilActivity = new Intent(this, PerfilActivity.class);
+                this.startActivity(intentPerfilActivity);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void btnSendAlertOnClick(View view)

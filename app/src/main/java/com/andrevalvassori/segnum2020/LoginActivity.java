@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(DataStorage.sharedInstance().GetUser() != null)
+        if(DataStorage.sharedInstance().getUser() != null)
         {
             Intent intentMainActivity = new Intent(this, Main2Activity.class);
             this.startActivity(intentMainActivity);

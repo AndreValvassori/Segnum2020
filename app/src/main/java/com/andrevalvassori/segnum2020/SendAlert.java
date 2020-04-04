@@ -134,7 +134,7 @@ public class SendAlert extends AppCompatActivity {
     public void SendAlert(LatLng local)
     {
         EventNewSimplifyDTO newEvent;
-        UserDTO currentUser = DataStorage.sharedInstance().GetUser();
+        UserDTO currentUser = DataStorage.sharedInstance().getUser();
         EventType currentEventType = ((EventType) spinTypes.getSelectedItem());
 
         newEvent = new EventNewSimplifyDTO();
