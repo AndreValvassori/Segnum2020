@@ -36,7 +36,9 @@ public class DataStorage {
     private UserDTO usuario;
 
     public Boolean eventChange = true;
-    public List<EventDTO> currentEvents = null;
+    public Boolean myEventChange = true;
+    public List<EventDTO> currentEvents = new ArrayList<>();
+    public List<EventDTO> currentMyEvents = new ArrayList<>();
     public List<EventType> eventTypes = null;
     protected DataStorage(){}
 
@@ -211,6 +213,38 @@ public class DataStorage {
         });
     }
 
+    public void loadMyEvents()
+    {
+        Log.d("DataStorage","loadMyEvents");
+        final Call<List<EventDTO>> userCall = new RetrofitInitialization().getEventService().getAllEvents();
+        userCall.enqueue(new Callback<List<EventDTO>>() {
+            @Override
+            public void onResponse(Call<List<EventDTO>> call, Response<List<EventDTO>> response) {
+                List<EventDTO> oldEvents = DataStorage.sharedInstance().currentMyEvents;
+
+                if(oldEvents == null)
+                {
+                    DataStorage.sharedInstance().currentMyEvents = response.body();
+                    DataStorage.sharedInstance().myEventChange = true;
+                }
+                else
+                if(!oldEvents.equals(response.body()))
+                {
+                    DataStorage.sharedInstance().currentMyEvents = response.body();
+                    DataStorage.sharedInstance().myEventChange = true;
+                }
+                Log.d("DataStorage","Events Loaded");
+                Log.d("DataStorage",currentEvents.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<EventDTO>> call, Throwable t) {
+                DataStorage.sharedInstance().eventChange = false;
+                Log.d("DataStorage","Failed to get Events - " + t.getMessage());
+            }
+        });
+    }
+
     public void sendEvent(EventNewSimplifyDTO event, LatLng local)
     {
         Call<Void> objectCall = new RetrofitInitialization().getEventService().postEvent(event);
@@ -271,4 +305,7 @@ public class DataStorage {
         });
     }
 
+    public List<EventDTO> getEvents() {
+        return currentEvents;
+    }
 }

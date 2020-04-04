@@ -51,6 +51,14 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
         DataStorage.sharedInstance().setContext(this);
 
+        btnAlertas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentPerfilActivity = new Intent(Main2Activity.this, EventsActivity.class);
+                startActivity(intentPerfilActivity);
+            }
+        });
+
     }
 
     @Override

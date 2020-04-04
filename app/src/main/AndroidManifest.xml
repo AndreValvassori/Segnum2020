@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".EventsActivity"></activity>
+        <activity android:name=".PerfilActivity" />
         <activity android:name=".Main2Activity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
