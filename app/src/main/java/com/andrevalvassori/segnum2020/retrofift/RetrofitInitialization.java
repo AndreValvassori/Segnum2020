@@ -12,7 +12,7 @@ public class RetrofitInitialization {
 
     public RetrofitInitialization() {
 
-        String url = "http://192.168.0.100:8080/";
+        String url = "http://felipejunges.com.br:8080/";
          retrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(JacksonConverterFactory.create()).build();
     }
     public UserService getUserService()
