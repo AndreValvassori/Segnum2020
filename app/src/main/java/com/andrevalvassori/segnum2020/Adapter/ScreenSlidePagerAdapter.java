@@ -15,7 +15,8 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
     public ScreenSlidePagerAdapter(final Context context, final FragmentManager fragmentManager,
                                    final List<Fragment> fragments) {
-        super(fragmentManager);
+//        super(fragmentManager);
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
         this.fragments = fragments;
     }

@@ -1,15 +1,11 @@
 package com.andrevalvassori.segnum2020.Adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Junges on 24/09/2017.
- */
 
 public class SectionsPageAdapter extends FragmentPagerAdapter {
 
@@ -22,7 +18,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
     }
 
     public SectionsPageAdapter(FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @Override
