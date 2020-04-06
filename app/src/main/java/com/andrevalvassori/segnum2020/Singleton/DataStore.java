@@ -29,8 +29,8 @@ public class DataStore {
 
     public Boolean eventChange = true;
     public Boolean myEventChange = true;
-    public List<EventDTO> currentEvents = new ArrayList<>();
-    public List<EventDTO> currentMyEvents = new ArrayList<>();
+    public List<EventDTO> currentEvents;
+    public List<EventDTO> currentMyEvents;
     public List<EventType> eventTypes = null;
     protected DataStore(){}
 

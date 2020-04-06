@@ -50,6 +50,8 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
         DataStore.sharedInstance().setContext(this);
 
+        btnAlertas = findViewById(R.id.btn_main_Alertas);
+
         btnAlertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
