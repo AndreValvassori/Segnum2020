@@ -11,8 +11,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Looper;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,11 +21,10 @@ import android.widget.Toast;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.Model.EventType;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,10 +50,10 @@ public class SendAlert extends AppCompatActivity {
         spinTypes = findViewById(R.id.sp_sendalert_tipo);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        DataStorage.sharedInstance().setContext(this);
+        DataStore.sharedInstance().setContext(this);
 
         ArrayAdapter<EventType> typesAdapter = new ArrayAdapter<EventType>(this,
-                android.R.layout.simple_spinner_item, DataStorage.sharedInstance().eventTypes);
+                android.R.layout.simple_spinner_item, DataStore.sharedInstance().eventTypes);
         typesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTypes.setAdapter(typesAdapter);
     }
@@ -134,7 +131,7 @@ public class SendAlert extends AppCompatActivity {
     public void SendAlert(LatLng local)
     {
         EventNewSimplifyDTO newEvent;
-        UserDTO currentUser = DataStorage.sharedInstance().getUser();
+        UserDTO currentUser = DataStore.sharedInstance().getUser();
         EventType currentEventType = ((EventType) spinTypes.getSelectedItem());
 
         newEvent = new EventNewSimplifyDTO();
@@ -143,7 +140,7 @@ public class SendAlert extends AppCompatActivity {
         newEvent.setUserId(currentUser.getId());
         newEvent.setEventTypeId(currentEventType.getId());
 
-        DataStorage.sharedInstance().sendEvent(newEvent, local);
+        DataStore.sharedInstance().sendEvent(newEvent, local);
     }
 
     public void btnSendAlertOnClick(View view)

@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.R;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 
 import java.util.List;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventHolder>{
 
-    private List<EventDTO> events = DataStorage.sharedInstance().getEvents();
+    private List<EventDTO> events = DataStore.sharedInstance().getEvents();
 
     @Override
     public EventHolder onCreateViewHolder(ViewGroup parent, int viewType) {

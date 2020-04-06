@@ -8,22 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
-import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static java.lang.System.in;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -50,7 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         btRegister = findViewById(R.id.btn_register_register);
         btCancelar = findViewById(R.id.btn_register_cancel);
 
-        DataStorage.sharedInstance().setContext(this);
+        DataStore.sharedInstance().setContext(this);
 
         timerVerifyLogin = new Timer(true);
         timerVerifyLogin.scheduleAtFixedRate(new TimerTask()
@@ -62,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                      @Override
                      public void run()
                      {
-                         if(DataStorage.sharedInstance().getUser() != null) {
+                         if(DataStore.sharedInstance().getUser() != null) {
                              finish();
                              timerVerifyLogin.cancel();
                              timerVerifyLogin.purge();
@@ -116,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                         newuser.setPassword(etRegisterSenha.getText().toString());
                         newuser.setBirthday(Calendar.getInstance().getTime());
 
-                        DataStorage.sharedInstance().RegisterUser(newuser);
+                        DataStore.sharedInstance().RegisterUser(newuser);
 
                     }
                 }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
 
 import retrofit2.Call;
@@ -46,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
 
         tvRegistro = findViewById(R.id.tv_login_cadastro);
 
-        DataStorage.sharedInstance().setContext(this);
-        DataStorage.sharedInstance().loadEventTypes();
+        DataStore.sharedInstance().setContext(this);
+        DataStore.sharedInstance().loadEventTypes();
     }
 
 
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if(DataStorage.sharedInstance().getUser() != null)
+        if(DataStore.sharedInstance().getUser() != null)
         {
             Intent intentMainActivity = new Intent(this, Main2Activity.class);
             this.startActivity(intentMainActivity);
@@ -74,10 +73,10 @@ public class LoginActivity extends AppCompatActivity {
         int userid = 0;
         if(!etLogin.getText().toString().equals("") && !etSenha.getText().toString().equals(""))
         {
-            userid = DataStorage.sharedInstance().UserLogin(etLogin.getText().toString(),etSenha.getText().toString());
+            userid = DataStore.sharedInstance().UserLogin(etLogin.getText().toString(),etSenha.getText().toString());
             if(userid != 0)
             {
-                DataStorage.sharedInstance().LoadUser(userid);
+                DataStore.sharedInstance().LoadUser(userid);
                 Intent intentMainActivity = new Intent(this, Main2Activity.class);
                 this.startActivity(intentMainActivity);
             }

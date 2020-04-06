@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.andrevalvassori.segnum2020.Adapter.EventListAdapter;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
 
 public class EventsActivity extends AppCompatActivity {
     private RecyclerView eventRecycler;

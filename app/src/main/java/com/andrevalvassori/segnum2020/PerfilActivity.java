@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -22,9 +22,9 @@ public class PerfilActivity extends AppCompatActivity {
         etPerfilNome = findViewById(R.id.et_perfil_name);
         etPerfilEmail = findViewById(R.id.et_perfil_email);
 
-        DataStorage.sharedInstance().setContext(this);
+        DataStore.sharedInstance().setContext(this);
 
-        UserDTO usuario = DataStorage.sharedInstance().getUser();
+        UserDTO usuario = DataStore.sharedInstance().getUser();
 
         etPerfilNome.setText(usuario.getName());
         etPerfilEmail.setText(usuario.getEmail());
@@ -33,7 +33,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public void btnDeslogarOnClick(View view)
     {
-        DataStorage.sharedInstance().setUser(null);
+        DataStore.sharedInstance().setUser(null);
         finish();
     }
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -15,8 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
-import com.andrevalvassori.segnum2020.Singleton.DataStorage;
-import com.google.android.gms.maps.CameraUpdate;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -49,7 +47,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
         .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        DataStorage.sharedInstance().setContext(this);
+        DataStore.sharedInstance().setContext(this);
 
         btnAlertas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +61,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
     @Override
     protected void onResume() {
-        if(DataStorage.sharedInstance().getUser() == null)
+        if(DataStore.sharedInstance().getUser() == null)
             finish();
         super.onResume();
     }
@@ -86,7 +84,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     private void BackButton()
     {
         super.onBackPressed();
-        DataStorage.sharedInstance().setUser(null);
+        DataStore.sharedInstance().setUser(null);
         refreshTimer.cancel();
         refreshTimer.purge();
         this.finish();
@@ -95,19 +93,19 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
     private void RefreshEvents()
     {
         Log.d("Main2Activity","Trying to Load Events!");
-        if(DataStorage.sharedInstance().eventChange)
+        if(DataStore.sharedInstance().eventChange)
         {
             Log.d("","Changes Found! Updating Events!");
             //----
-            if(mMap == null || DataStorage.sharedInstance().currentEvents == null) {
-                DataStorage.sharedInstance().loadAllEvents();
+            if(mMap == null || DataStore.sharedInstance().currentEvents == null) {
+                DataStore.sharedInstance().loadAllEvents();
                 return;
             }
 
             mMap.clear();
 
             int i = 0;
-            for (EventDTO evento: DataStorage.sharedInstance().currentEvents) {
+            for (EventDTO evento: DataStore.sharedInstance().currentEvents) {
 
 
                 LatLng position =new LatLng(
@@ -118,7 +116,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                         ).title(evento.getName())
                 );
 
-                if(i++ == DataStorage.sharedInstance().currentEvents.size() - 1){
+                if(i++ == DataStore.sharedInstance().currentEvents.size() - 1){
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
                 }
                 Log.d("Main2Activity","Event: "+evento.toString());
@@ -138,9 +136,9 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
                 Log.d("Main2Activity","Event: "+eventDTO.toString());
             });*/
             //----
-            DataStorage.sharedInstance().eventChange = false;
+            DataStore.sharedInstance().eventChange = false;
         }
-        DataStorage.sharedInstance().loadAllEvents();
+        DataStore.sharedInstance().loadAllEvents();
     }
 
     private void StartEventTimer() {

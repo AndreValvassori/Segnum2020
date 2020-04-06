@@ -1,23 +1,15 @@
 package com.andrevalvassori.segnum2020.Singleton;
 
 import android.content.Context;
-import android.content.Intent;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.core.content.IntentCompat;
-
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
-import com.andrevalvassori.segnum2020.DTO.event.EventNewDTO;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
 import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
 import com.andrevalvassori.segnum2020.DTO.user.CredentialsDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
-import com.andrevalvassori.segnum2020.LoginActivity;
-import com.andrevalvassori.segnum2020.Main2Activity;
-import com.andrevalvassori.segnum2020.Model.Event;
 import com.andrevalvassori.segnum2020.Model.EventType;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
 import com.google.android.gms.maps.model.LatLng;
@@ -29,8 +21,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataStorage {
-    private static DataStorage instance = null;
+public class DataStore {
+    private static DataStore instance = null;
     private Context context;
 
     private UserDTO usuario;
@@ -40,11 +32,11 @@ public class DataStorage {
     public List<EventDTO> currentEvents = new ArrayList<>();
     public List<EventDTO> currentMyEvents = new ArrayList<>();
     public List<EventType> eventTypes = null;
-    protected DataStorage(){}
+    protected DataStore(){}
 
-    public static DataStorage sharedInstance(){
+    public static DataStore sharedInstance(){
         if(instance == null)
-            instance = new DataStorage();
+            instance = new DataStore();
 
         return instance;
     }
@@ -69,7 +61,7 @@ public class DataStorage {
         {
             result = objectCall.execute().body();
             System.out.println(result);
-            DataStorage.sharedInstance().setUser(result);
+            DataStore.sharedInstance().setUser(result);
         }
         catch (Exception ex)
         {
@@ -147,7 +139,7 @@ public class DataStorage {
                 if(response.code() == 200 || response.code() == 201)
                 {
                     Toast.makeText (context, "Registrado com sucesso!", Toast.LENGTH_LONG).show();
-                    DataStorage.sharedInstance().UserLogin(user.getEmail(),user.getPassword());
+                    DataStore.sharedInstance().UserLogin(user.getEmail(),user.getPassword());
                 }
             }
 
@@ -188,18 +180,18 @@ public class DataStorage {
         userCall.enqueue(new Callback<List<EventDTO>>() {
             @Override
             public void onResponse(Call<List<EventDTO>> call, Response<List<EventDTO>> response) {
-                List<EventDTO> oldEvents = DataStorage.sharedInstance().currentEvents;
+                List<EventDTO> oldEvents = DataStore.sharedInstance().currentEvents;
 
                 if(oldEvents == null)
                 {
-                    DataStorage.sharedInstance().currentEvents = response.body();
-                    DataStorage.sharedInstance().eventChange = true;
+                    DataStore.sharedInstance().currentEvents = response.body();
+                    DataStore.sharedInstance().eventChange = true;
                 }
                 else
                 if(!oldEvents.equals(response.body()))
                 {
-                    DataStorage.sharedInstance().currentEvents = response.body();
-                    DataStorage.sharedInstance().eventChange = true;
+                    DataStore.sharedInstance().currentEvents = response.body();
+                    DataStore.sharedInstance().eventChange = true;
                 }
                 Log.d("DataStorage","Events Loaded");
                 Log.d("DataStorage",currentEvents.toString());
@@ -207,7 +199,7 @@ public class DataStorage {
 
             @Override
             public void onFailure(Call<List<EventDTO>> call, Throwable t) {
-                DataStorage.sharedInstance().eventChange = false;
+                DataStore.sharedInstance().eventChange = false;
                 Log.d("DataStorage","Failed to get Events - " + t.getMessage());
             }
         });
@@ -220,18 +212,18 @@ public class DataStorage {
         userCall.enqueue(new Callback<List<EventDTO>>() {
             @Override
             public void onResponse(Call<List<EventDTO>> call, Response<List<EventDTO>> response) {
-                List<EventDTO> oldEvents = DataStorage.sharedInstance().currentMyEvents;
+                List<EventDTO> oldEvents = DataStore.sharedInstance().currentMyEvents;
 
                 if(oldEvents == null)
                 {
-                    DataStorage.sharedInstance().currentMyEvents = response.body();
-                    DataStorage.sharedInstance().myEventChange = true;
+                    DataStore.sharedInstance().currentMyEvents = response.body();
+                    DataStore.sharedInstance().myEventChange = true;
                 }
                 else
                 if(!oldEvents.equals(response.body()))
                 {
-                    DataStorage.sharedInstance().currentMyEvents = response.body();
-                    DataStorage.sharedInstance().myEventChange = true;
+                    DataStore.sharedInstance().currentMyEvents = response.body();
+                    DataStore.sharedInstance().myEventChange = true;
                 }
                 Log.d("DataStorage","Events Loaded");
                 Log.d("DataStorage",currentEvents.toString());
@@ -239,7 +231,7 @@ public class DataStorage {
 
             @Override
             public void onFailure(Call<List<EventDTO>> call, Throwable t) {
-                DataStorage.sharedInstance().eventChange = false;
+                DataStore.sharedInstance().eventChange = false;
                 Log.d("DataStorage","Failed to get Events - " + t.getMessage());
             }
         });
