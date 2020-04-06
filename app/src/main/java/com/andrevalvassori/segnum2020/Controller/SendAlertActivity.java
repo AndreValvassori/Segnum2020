@@ -1,4 +1,4 @@
-package com.andrevalvassori.segnum2020;
+package com.andrevalvassori.segnum2020.Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.Model.EventType;
+import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
@@ -30,7 +31,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class SendAlert extends AppCompatActivity {
+public class SendAlertActivity extends AppCompatActivity {
 
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;

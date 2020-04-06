@@ -1,4 +1,4 @@
-package com.andrevalvassori.segnum2020;
+package com.andrevalvassori.segnum2020.Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
+import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -195,7 +196,7 @@ public class Main2Activity extends AppCompatActivity implements OnMapReadyCallba
 
     public void btnSendAlertOnClick(View view)
     {
-        Intent intentSendAlertActivity = new Intent(this, SendAlert.class);
+        Intent intentSendAlertActivity = new Intent(this, SendAlertActivity.class);
         this.startActivity(intentSendAlertActivity);
     }
 }

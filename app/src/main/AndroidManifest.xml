@@ -18,9 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EventsActivity"></activity>
-        <activity android:name=".PerfilActivity" />
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".Controller.EventsActivity"></activity>
+        <activity android:name=".Controller.PerfilActivity" />
+        <activity android:name=".Controller.Main2Activity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,9 +33,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".SendAlert" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Controller.SendAlertActivity" />
+        <activity android:name=".Controller.RegisterActivity" />
+        <activity android:name=".Controller.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

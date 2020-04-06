@@ -1,4 +1,4 @@
-package com.andrevalvassori.segnum2020;
+package com.andrevalvassori.segnum2020.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
+import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
 
 public class PerfilActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.andrevalvassori.segnum2020;
+package com.andrevalvassori.segnum2020.Controller;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.andrevalvassori.segnum2020.Adapter.EventListAdapter;
+import com.andrevalvassori.segnum2020.R;
 
 public class EventsActivity extends AppCompatActivity {
     private RecyclerView eventRecycler;
