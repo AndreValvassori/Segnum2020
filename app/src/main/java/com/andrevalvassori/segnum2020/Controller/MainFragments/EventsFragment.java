@@ -40,4 +40,14 @@ public class EventsFragment extends Fragment {
         super.onResume();
         adapter.notifyDataSetChanged();
     }
+
+    public RecyclerView getRecycler()
+    {
+        return eventRecycler;
+    }
+
+    public void notifyDataSetChanged() {
+        adapter.notifyDataSetChanged();
+    }
+
 }

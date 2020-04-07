@@ -3,14 +3,12 @@ package com.andrevalvassori.segnum2020.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TabHost;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DataStore.sharedInstance().setContext(this);
+        DataStore.sharedInstance().loadAllEvents();
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
@@ -53,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         commitEvento(manager, eventFragments);
+
+        //DataStore.sharedInstance().LoadAndNotifyEventsa(eventFragments.getRecycler());
+        //DataStore.sharedInstance().loadAllEvents();
 
     }
 
@@ -74,4 +76,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(myEventFragments, "Meus Alertas");
         viewPager.setAdapter(adapter);
     }
+
 }
+
+

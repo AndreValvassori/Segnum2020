@@ -2,8 +2,15 @@ package com.andrevalvassori.segnum2020.Singleton;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Adapter;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.andrevalvassori.segnum2020.Adapter.EventListAdapter;
+import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
+import com.andrevalvassori.segnum2020.Controller.MainFragments.EventsFragment;
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
 import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
@@ -29,9 +36,9 @@ public class DataStore {
 
     public Boolean eventChange = true;
     public Boolean myEventChange = true;
-    public List<EventDTO> currentEvents;
-    public List<EventDTO> currentMyEvents;
-    public List<EventType> eventTypes = null;
+    public List<EventDTO> currentEvents = new ArrayList<EventDTO>();
+    public List<EventDTO> currentMyEvents = new ArrayList<EventDTO>();
+    public List<EventType> eventTypes = new ArrayList<EventType>();
     protected DataStore(){}
 
     public static DataStore sharedInstance(){
@@ -62,6 +69,7 @@ public class DataStore {
             result = objectCall.execute().body();
             System.out.println(result);
             DataStore.sharedInstance().setUser(result);
+            DataStore.sharedInstance().loadAllEvents();
         }
         catch (Exception ex)
         {
@@ -171,6 +179,39 @@ public class DataStore {
         eventRoubo.setDescription("Roubo");
         eventRoubo.setName("Roubo");
         eventTypes.add(eventRoubo);
+    }
+
+    public void LoadAndNotifyEventsa(RecyclerView recyclerAdapter)
+    {
+        Log.d("DataStorage","LoadAndNotifyEvents");
+        final Call<List<EventDTO>> userCall = new RetrofitInitialization().getEventService().getAllEvents();
+        userCall.enqueue(new Callback<List<EventDTO>>() {
+            @Override
+            public void onResponse(Call<List<EventDTO>> call, Response<List<EventDTO>> response) {
+                List<EventDTO> oldEvents = DataStore.sharedInstance().currentEvents;
+
+                if(oldEvents == null)
+                {
+                    DataStore.sharedInstance().currentEvents = response.body();
+                    DataStore.sharedInstance().eventChange = true;
+                }
+                else
+                if(!oldEvents.equals(response.body()))
+                {
+                    DataStore.sharedInstance().currentEvents = response.body();
+                    DataStore.sharedInstance().eventChange = true;
+                    //recyclerAdapter.getAdapter().notifyDataSetChanged();
+                }
+                Log.d("DataStorage","Events Loaded");
+                Log.d("DataStorage",currentEvents.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<EventDTO>> call, Throwable t) {
+                DataStore.sharedInstance().eventChange = false;
+                Log.d("DataStorage","Failed to get Events - " + t.getMessage());
+            }
+        });
     }
 
     public void loadAllEvents()

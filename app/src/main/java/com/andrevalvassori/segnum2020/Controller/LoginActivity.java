@@ -78,7 +78,8 @@ public class LoginActivity extends AppCompatActivity {
             if(userid != 0)
             {
                 DataStore.sharedInstance().LoadUser(userid);
-                Intent intentMainActivity = new Intent(this, Main2Activity.class);
+                DataStore.sharedInstance().loadAllEvents();
+                Intent intentMainActivity = new Intent(this, MainActivity.class);
                 this.startActivity(intentMainActivity);
             }
             else
