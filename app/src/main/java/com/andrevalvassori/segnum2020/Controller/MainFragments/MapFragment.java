@@ -4,13 +4,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.andrevalvassori.segnum2020.Controller.SendAlertActivity;
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
@@ -30,32 +35,50 @@ import com.google.maps.android.heatmaps.HeatmapTileProvider;
 
 import java.util.ArrayList;
 
-public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ArrayList<LatLng> heatMapMarkers = new ArrayList<LatLng>();
     private HeatmapTileProvider mProvider;
     private TileOverlay mOverlay;
 
+    private  SupportMapFragment mapFragment;
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        //setContentView(R.layout.fragment_map);
-//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.mapnew);
-        getMapAsync(this);
-    }
+    View v;
 
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
+//    public void onCreate(Bundle savedInstanceState) {
+//        getMapAsync(this);
+//        super.onCreate(savedInstanceState);
+//    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 //        super.onCreateView(inflater, container, savedInstanceState);
 //        v=inflater.inflate(R.layout.fragment_map, null);
 //        getMapAsync(this);
 //        return v;
-//}
+        View rootView = inflater.inflate(R.layout.fragment_map, container, false);
+        mapFragment = (SupportMapFragment)getChildFragmentManager()
+                .findFragmentById(R.id.mapnew);
+        mapFragment.getMapAsync(this);
+
+        Button button = (Button) rootView.findViewById(R.id.btn_map_SendAlert);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //Toast.makeText (getContext(), "OnClick button fragment", Toast.LENGTH_LONG).show();
+                Intent intentSendAlertActivity = new Intent(getContext(), SendAlertActivity.class);
+                getContext().startActivity(intentSendAlertActivity);
+            }
+        });
+
+        return rootView;
+}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -108,7 +131,7 @@ public class MapFragment extends SupportMapFragment implements OnMapReadyCallbac
                 .data(heatMapMarkers)
                 .gradient(gradient)
                 .build();
-        mProvider.setRadius(30);
+        mProvider.setRadius(200);
 
         mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
 

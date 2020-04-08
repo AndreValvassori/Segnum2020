@@ -41,13 +41,14 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         holder.txtEventCreator.setText(event.getUser().getName());
         holder.txtCreatedAt.setText(event.getCreated_at());
 
-        Random r = new Random();
-        int randomInt = r.nextInt(24) + 1;
-        String uri = "@drawable/list_bg_" + randomInt;
-
-        int imageResource = view.getResources().getIdentifier(uri, null, view.getContext().getPackageName());
-        Drawable res = view.getResources().getDrawable(imageResource);
-        holder.imgEventPicture.setImageDrawable(res);
+//        Random r = new Random();
+//        int randomInt = r.nextInt(24) + 1;
+//        String uri = "@drawable/list_bg_" + randomInt;
+//
+//        int imageResource = view.getResources().getIdentifier(uri, null, view.getContext().getPackageName());
+//        Drawable res = view.getResources().getDrawable(imageResource);
+//        holder.imgEventPicture.setImageDrawable(res);
+        holder.imgEventPicture.setImageDrawable(null);
     }
 
     public void setEvents(List<EventDTO> events) {

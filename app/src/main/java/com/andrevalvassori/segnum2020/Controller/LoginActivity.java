@@ -63,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(DataStore.sharedInstance().getUser() != null)
         {
-            Intent intentMainActivity = new Intent(this, Main2Activity.class);
+//            Intent intentMainActivity = new Intent(this, Main2Activity.class);
+            Intent intentMainActivity = new Intent(this, MainActivity.class);
             this.startActivity(intentMainActivity);
         }
 
