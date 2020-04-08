@@ -11,6 +11,7 @@ import android.widget.TabHost;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
 import com.andrevalvassori.segnum2020.Controller.MainFragments.EventsFragment;
+import com.andrevalvassori.segnum2020.Controller.MainFragments.MapFragment;
 import com.andrevalvassori.segnum2020.Controller.MainFragments.MyEventsFragment;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         commitEvento(manager, eventFragments);
 
-        commitEvento(manager, mapFragment);
+        //commitEvento(manager, mapFragment);
 
         //DataStore.sharedInstance().LoadAndNotifyEventsa(eventFragments.getRecycler());
         //DataStore.sharedInstance().loadAllEvents();

@@ -1,4 +1,4 @@
-package com.andrevalvassori.segnum2020.Controller;
+package com.andrevalvassori.segnum2020.Controller.MainFragments;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,36 +14,45 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends SupportMapFragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     MapView gMapView;
-
-
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.fragment_map);
+    View v;
+/*
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        //setContentView(R.layout.fragment_map);
 //        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 //                .findFragmentById(R.id.mapnew);
-//        mapFragment.getMapAsync(this);
-//    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
-
-        gMapView = (MapView) view.findViewById(R.id.mapnew);
-        gMapView.getMapAsync(this);
-
-        MapsInitializer.initialize(getContext());
-        return view;
+        getMapAsync(this);
     }
+*/
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        v=inflater.inflate(R.layout.fragment_map, null);
+
+        return v;
+}
+
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.fragment_map, container, false);
+//
+//        gMapView = (MapView) view.findViewById(R.id.mapnew);
+//        gMapView.getMapAsync(this);
+//
+//        MapsInitializer.initialize(getContext());
+//        return view;
+//    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
