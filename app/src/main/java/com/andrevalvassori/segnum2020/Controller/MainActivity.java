@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TabHost;
 
@@ -30,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     EventsFragment eventFragments;
     MyEventsFragment myEventFragments;
+    MapFragment mapFragment;
 
 
     @Override
@@ -53,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         commitEvento(manager, eventFragments);
 
+        commitEvento(manager, mapFragment);
+
         //DataStore.sharedInstance().LoadAndNotifyEventsa(eventFragments.getRecycler());
         //DataStore.sharedInstance().loadAllEvents();
 
@@ -70,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
+        mapFragment = new MapFragment();
         eventFragments = new EventsFragment();
         myEventFragments = new MyEventsFragment();
         adapter.addFragment(eventFragments, "Alertas");
+        adapter.addFragment(mapFragment, "Mapa");
         adapter.addFragment(myEventFragments, "Meus Alertas");
         viewPager.setAdapter(adapter);
     }

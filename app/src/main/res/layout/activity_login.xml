@@ -56,9 +56,10 @@
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
         android:hint="@string/meuemail"
-        android:text=""
+        android:text="master@segnum.com.br"
         android:inputType="textEmailAddress"
-        android:autofillHints="@string/meuemail"/>
+        android:autofillHints="@string/meuemail"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -81,7 +82,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
-        android:text=""
+        android:text="123"
         android:inputType="textPassword"
         android:hint="@string/mypass"
         android:autofillHints=""/>
