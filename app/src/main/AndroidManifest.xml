@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Controller.MainFragments.EventsFragment"></activity>
+        <activity android:name=".Controller.UserProfileFragments.ProfileFragment"></activity>
+        <activity android:name=".Controller.PerfilActivity$UserProfileActivity" />
+        <activity android:name=".Controller.MainFragments.EventsFragment" />
         <activity android:name=".Controller.MainActivity" />
         <activity android:name=".Controller.EventsActivity" />
         <activity android:name=".Controller.PerfilActivity" />
