@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.*;
 import com.google.android.gms.maps.model.TileOverlay;
@@ -52,6 +54,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 //        super.onCreate(savedInstanceState);
 //    }
 
+    private static final String TAG = "MapFragment";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +81,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+
+
         return rootView;
 }
 
@@ -85,6 +91,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         mMap.setMaxZoomPreference(19f);
         mMap.setMinZoomPreference(15f);
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getContext(), R.raw.map_style));
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e(TAG, "Can't find style. Error: ", e);
+        }
 
         insertAllMarks();
     }
