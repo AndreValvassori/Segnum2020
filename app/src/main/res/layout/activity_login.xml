@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity">
+    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -29,7 +30,7 @@
             android:layout_marginStart="10dp"
             android:fontFamily="sans-serif-black"
             android:textSize="30sp"
-            android:textColor="@android:color/holo_green_dark"
+            android:textColor="@color/colorAccent"
         />
     </LinearLayout>
 
@@ -42,7 +43,7 @@
         android:text="@string/email"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorWhite"
         android:id="@+id/tv_login_email"
         />
 
@@ -57,6 +58,7 @@
         android:textAlignment="textStart"
         android:hint="@string/meuemail"
         android:text="master@segnum.com.br"
+        android:textColor="@color/colorWhite"
         android:inputType="textEmailAddress"
         android:autofillHints="@string/meuemail"
         />
@@ -70,7 +72,7 @@
         android:text="@string/pass"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorWhite"
         android:id="@+id/tv_login_pass"/>
 
     <EditText
@@ -84,6 +86,7 @@
         android:textAlignment="textStart"
         android:text="123"
         android:inputType="textPassword"
+        android:textColor="@color/colorWhite"
         android:hint="@string/mypass"
         android:autofillHints=""/>
 
@@ -96,10 +99,9 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/roundedbutton"
-        android:backgroundTint="@android:color/holo_green_dark"
         android:onClick="btnLoginOnClick"
+        android:textColor="@color/colorWhite"
         android:text="@string/login"
-        android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -115,7 +117,7 @@
         android:backgroundTint="#4267B2"
         android:onClick="btnFacebookOnClick"
         android:text="@string/loginFacebook"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -131,7 +133,7 @@
         android:onClick="btnRegisterOnClick"
         android:text="@string/notregisteredyet"
         android:textAlignment="textEnd"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold" />
 
 </RelativeLayout>

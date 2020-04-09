@@ -5,16 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#EEEEEE"
+    android:background="@color/colorPrimary"
     android:id="@+id/eventList_BGColor">
 
     <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="88dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -30,29 +33,21 @@
             android:alpha="0.4"
             android:background="#000" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
+            android:padding="8dp"
             android:maxHeight="88dp">
-
-            <TextView
-                android:id="@+id/txtCreatedAt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="01/04/2020 13:31:13"
-                android:textColor="#FFF"
-                android:textSize="6pt"
-                android:layout_marginTop="4dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtEventName_List"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="Titulo do Evento"
                 android:textColor="#FFF"
                 android:textSize="14pt"
@@ -64,22 +59,31 @@
                 android:id="@+id/txtPrimaryCategory_List"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
                 android:text="Categoria do Evento"
                 android:textColor="#FFF"
                 android:textSize="8pt"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtCreatedAt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/04/2020 13:31:13"
+                android:textColor="#FFF"
+                android:textSize="6pt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
             <TextView
                 android:id="@+id/txtEventCreator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
                 android:text="Master"
                 android:textColor="#FFF"
                 android:textSize="8pt"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.RegisterActivity">
+    tools:context="com.andrevalvassori.segnum2020.Controller.RegisterActivity"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -50,7 +51,7 @@
         android:text="@string/email"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorWhite"/>
 
     <EditText
         android:id="@+id/et_register_email"
@@ -62,6 +63,7 @@
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
         android:text=""
+        android:textColor="@color/colorWhite"
         android:inputType="textEmailAddress"
         android:hint="@string/meuemail"/>
 
@@ -75,7 +77,7 @@
         android:text="@string/pass"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorWhite"/>
 
     <EditText
         android:id="@+id/et_register_pass"
@@ -86,6 +88,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
+        android:textColor="@color/colorWhite"
         android:text=""
         android:inputType="textPassword"/>
 
@@ -99,7 +102,7 @@
         android:text="@string/nome"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorWhite"/>
 
     <EditText
         android:id="@+id/et_register_name"
@@ -112,6 +115,7 @@
         android:textAlignment="textStart"
         android:text=""
         android:inputType="text"
+        android:textColor="@color/colorWhite"
         android:hint="@string/nomecompleto"/>
 
     <TextView
@@ -124,7 +128,7 @@
         android:text="@string/telefone"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorWhite"/>
 
     <EditText
         android:id="@+id/et_register_phone"
@@ -137,7 +141,8 @@
         android:textAlignment="textStart"
         android:text=""
         android:inputType="phone"
-        android:hint="@string/telefonevalue"/>
+        android:hint="@string/telefonevalue"
+        android:textColor="@color/colorWhite"/>
 
     <TextView
         android:id="@+id/tv_register_birthday"
@@ -149,7 +154,7 @@
         android:text="@string/datanascimento"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@color/colorWhite"/>
 
     <DatePicker
         android:id="@+id/dp_register_birthday"
@@ -158,8 +163,8 @@
         android:layout_below="@id/tv_register_birthday"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:backgroundTint="@android:color/white"
-        android:calendarTextColor="@android:color/black" />
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:calendarTextColor="@color/colorWhite" />
 
     <Button
         android:id="@+id/btn_register_register"
@@ -170,7 +175,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/roundedbutton"
-        android:backgroundTint="@android:color/holo_green_dark"
         android:onClick="btnRegisterOnClick"
         android:text="@string/registrar"
         android:textColor="@android:color/white"

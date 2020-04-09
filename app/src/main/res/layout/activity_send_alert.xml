@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.SendAlertActivity">
+    tools:context="com.andrevalvassori.segnum2020.Controller.SendAlertActivity"
+    android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:id="@+id/ly_sendevent_TopSegnum"
@@ -26,7 +27,7 @@
             android:layout_marginStart="10dp"
             android:fontFamily="sans-serif-black"
             android:textSize="30sp"
-            android:textColor="@android:color/holo_green_dark"/>
+            android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
     <TextView
@@ -38,6 +39,7 @@
         android:text="Enviar novo alerta"
         android:textAlignment="center"
         android:textSize="25sp"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold"/>
 
     <com.google.android.gms.maps.MapView
@@ -56,6 +58,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/mv_sendalert_map"
+        android:textColor="@color/colorWhite"
         android:text="Tipo"
         android:textStyle="bold"/>
 
@@ -88,6 +91,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/ly_sendevent_EventType"
         android:text="Nome"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold"/>
 
     <EditText
@@ -100,6 +104,7 @@
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
         android:text=""
+        android:textColor="@color/colorWhite"
         android:inputType="text"/>
 
     <TextView
@@ -111,6 +116,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@+id/et_sendalert_Nome"
         android:text="Descrição"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold"/>
 
     <EditText
@@ -123,6 +129,7 @@
         android:layout_marginTop="0dp"
         android:textAlignment="textStart"
         android:text=""
+        android:textColor="@color/colorWhite"
         android:inputType="text"/>
 
     <Button
@@ -136,7 +143,6 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/roundedbutton"
-        android:backgroundTint="@android:color/holo_green_light"
         android:onClick="btnSendAlertOnClick"
         android:text="Salvar!" />
 
