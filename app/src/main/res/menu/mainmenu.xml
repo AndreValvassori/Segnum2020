@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mainMenu_Item1"
-        android:icon="@drawable/roundedbutton"
+        android:icon="@drawable/round_account_box_white_18dp"
         android:title="Meu Perfil"
-        app:showAsAction="never"/>
+        app:showAsAction="always"/>
 
 
 </menu>

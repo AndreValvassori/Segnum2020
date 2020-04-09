@@ -1,5 +1,6 @@
 package com.andrevalvassori.segnum2020.Controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,6 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TabHost;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
@@ -18,6 +23,8 @@ import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int MENU_ITEM1 = R.id.mainMenu_Item1;
 
     TabHost tabHostWindow = null;
 
@@ -81,6 +88,52 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_ITEM1:
+                Intent intentPerfilActivity = new Intent(this, PerfilActivity.class);
+                this.startActivity(intentPerfilActivity);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        if(DataStore.sharedInstance().getUser() == null)
+            finish();
+        super.onResume();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            BackButton();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        BackButton();
+    }
+
+    private void BackButton()
+    {
+        super.onBackPressed();
+        DataStore.sharedInstance().setUser(null);
+        this.finish();
+    }
 }
 
 

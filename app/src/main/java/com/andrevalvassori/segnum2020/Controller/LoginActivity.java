@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             userid = DataStore.sharedInstance().UserLogin(etLogin.getText().toString(),etSenha.getText().toString());
             if(userid != 0)
             {
-                DataStore.sharedInstance().LoadUser(userid);
+                /*DataStore.sharedInstance().LoadUser(userid);*/
                 DataStore.sharedInstance().loadAllEvents();
                 Intent intentMainActivity = new Intent(this, MainActivity.class);
                 this.startActivity(intentMainActivity);
