@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.et_login_pass);
 
         btLogin = findViewById(R.id.btn_login_login);
-        btFacebook = findViewById(R.id.btn_login_facebook);
+        //btFacebook = findViewById(R.id.btn_login_facebook);
 
         tvRegistro = findViewById(R.id.tv_login_cadastro);
 
