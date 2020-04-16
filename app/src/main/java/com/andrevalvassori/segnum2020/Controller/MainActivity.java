@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(eventFragments, "Alertas");
         adapter.addFragment(mapFragment, "Mapa");
        
-        if (DataStore.sharedInstance().getUser() == null || DataStore.sharedInstance().getUser().getId() == 0) {
+        if (DataStore.sharedInstance().getUser() != null/* || DataStore.sharedInstance().getUser().getId() == 0*/) {
             myEventFragments = new MyEventsFragment();
             adapter.addFragment(myEventFragments, "Meus Alertas");
         }
@@ -95,8 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
+        if(DataStore.sharedInstance().getUser() != null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.mainmenu, menu);
+        }
         return true;
     }
 
@@ -113,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if(DataStore.sharedInstance().getUser() == null)
-            finish();
-        super.onResume();
+    if(DataStore.sharedInstance().getUser() == null && DataStore.sharedInstance().enterWithLogin)
+        finish();
+    super.onResume();
     }
 
     @Override

@@ -33,6 +33,8 @@ public class DataStore {
     private Context context;
 
     private UserDTO usuario;
+    public boolean enterWithLogin = false;
+
 
     public Boolean eventChange = true;
     public Boolean myEventChange = true;
