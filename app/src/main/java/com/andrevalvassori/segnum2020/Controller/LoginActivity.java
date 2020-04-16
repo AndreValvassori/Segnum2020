@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.et_login_pass);
 
         btLogin = findViewById(R.id.btn_login_login);
-        btFacebook = findViewById(R.id.btn_login_facebook);
 
         tvRegistro = findViewById(R.id.tv_login_cadastro);
 
@@ -88,6 +87,13 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText (LoginActivity.this, "Não foi possível Realizar login! Verifique Usuário e Senha!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void btnEnterWithoutLogin(View view)
+    {
+        DataStore.sharedInstance().loadAllEvents();
+        Intent intentMainActivity = new Intent(this, MainActivity.class);
+        this.startActivity(intentMainActivity);
     }
 
     public void btnFacebookOnClick(View view){

@@ -12,6 +12,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
@@ -81,10 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
         mapFragment = new MapFragment();
         eventFragments = new EventsFragment();
-        myEventFragments = new MyEventsFragment();
+
         adapter.addFragment(eventFragments, "Alertas");
         adapter.addFragment(mapFragment, "Mapa");
-        adapter.addFragment(myEventFragments, "Meus Alertas");
+       
+        if (DataStore.sharedInstance().getUser() == null || DataStore.sharedInstance().getUser().getId() == 0) {
+            myEventFragments = new MyEventsFragment();
+            adapter.addFragment(myEventFragments, "Meus Alertas");
+        }
         viewPager.setAdapter(adapter);
     }
 

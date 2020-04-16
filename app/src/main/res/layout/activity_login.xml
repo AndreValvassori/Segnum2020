@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:onClick="btnRegisterOnClick"
+        android:onClick="btnEnterWithoutLogin"
         android:textColor="@color/colorWhite"
         android:text="Entrar como visitante"
         android:textStyle="bold"
