@@ -70,6 +70,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
 
         Button button = (Button) rootView.findViewById(R.id.btn_map_SendAlert);
+        if (DataStore.sharedInstance().getUser() == null || DataStore.sharedInstance().getUser().getId() == 0) {
+            button.setVisibility(View.INVISIBLE);
+        }
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override

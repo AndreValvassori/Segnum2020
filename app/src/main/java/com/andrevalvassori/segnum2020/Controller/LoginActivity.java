@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         etSenha = findViewById(R.id.et_login_pass);
 
         btLogin = findViewById(R.id.btn_login_login);
-        //btFacebook = findViewById(R.id.btn_login_facebook);
 
         tvRegistro = findViewById(R.id.tv_login_cadastro);
 
@@ -63,9 +63,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if(DataStore.sharedInstance().getUser() != null)
         {
-//            Intent intentMainActivity = new Intent(this, Main2Activity.class);
             Intent intentMainActivity = new Intent(this, MainActivity.class);
             this.startActivity(intentMainActivity);
+            DataStore.sharedInstance().enterWithLogin = true;
         }
 
     }
@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 /*DataStore.sharedInstance().LoadUser(userid);*/
                 DataStore.sharedInstance().loadAllEvents();
+                DataStore.sharedInstance().enterWithLogin = true;
                 Intent intentMainActivity = new Intent(this, MainActivity.class);
                 this.startActivity(intentMainActivity);
             }
@@ -88,6 +89,15 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText (LoginActivity.this, "Não foi possível Realizar login! Verifique Usuário e Senha!", Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    public void btnEnterWithoutLogin(View view)
+    {
+        DataStore.sharedInstance().loadAllEvents();
+        DataStore.sharedInstance().enterWithLogin = false;
+        Intent intentMainActivity = new Intent(this, MainActivity.class);
+        this.startActivity(intentMainActivity);
+
     }
 
     public void btnFacebookOnClick(View view){

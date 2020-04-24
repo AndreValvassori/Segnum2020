@@ -7,15 +7,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
 import com.andrevalvassori.segnum2020.Controller.MainFragments.EventsFragment;
@@ -24,10 +23,6 @@ import com.andrevalvassori.segnum2020.Controller.MainFragments.MyEventsFragment;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.material.tabs.TabLayout;
-
-import java.net.URL;
-
-import me.pushy.sdk.Pushy;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,20 +62,12 @@ public class MainActivity extends AppCompatActivity {
 
         commitEvento(manager, eventFragments);
 
-        if (!Pushy.isRegistered(getApplicationContext())) {
-            new RegisterForPushNotificationsAsync().execute();
-        }
-
-        Pushy.listen(this);
-
         //commitEvento(manager, mapFragment);
 
         //DataStore.sharedInstance().LoadAndNotifyEventsa(eventFragments.getRecycler());
         //DataStore.sharedInstance().loadAllEvents();
 
     }
-
-
 
     private void commitEvento(FragmentManager manager, Fragment fragmento) {
 //        FragmentTransaction tx = manager.beginTransaction();
@@ -96,17 +83,23 @@ public class MainActivity extends AppCompatActivity {
 
         mapFragment = new MapFragment();
         eventFragments = new EventsFragment();
-        myEventFragments = new MyEventsFragment();
+
         adapter.addFragment(eventFragments, "Alertas");
         adapter.addFragment(mapFragment, "Mapa");
-        adapter.addFragment(myEventFragments, "Meus Alertas");
+       
+        if (DataStore.sharedInstance().getUser() != null/* || DataStore.sharedInstance().getUser().getId() == 0*/) {
+            myEventFragments = new MyEventsFragment();
+            adapter.addFragment(myEventFragments, "Meus Alertas");
+        }
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
+        if(DataStore.sharedInstance().getUser() != null) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.mainmenu, menu);
+        }
         return true;
     }
 
@@ -123,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        if(DataStore.sharedInstance().getUser() == null)
-            finish();
-        super.onResume();
+    if(DataStore.sharedInstance().getUser() == null && DataStore.sharedInstance().enterWithLogin)
+        finish();
+    super.onResume();
     }
 
     @Override
@@ -148,40 +141,6 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         DataStore.sharedInstance().setUser(null);
         this.finish();
-    }
-
-    private class RegisterForPushNotificationsAsync extends AsyncTask<Void, Void, Exception> {
-        protected Exception doInBackground(Void... params) {
-            try {
-                // Assign a unique token to this device
-                String deviceToken = Pushy.register(getApplicationContext());
-
-                // Log it for debugging purposes
-                Log.d("Segnum2020", "Pushy device token: " + deviceToken);
-
-                // Send the token to your backend server via an HTTP GET request
-                new URL("https://{YOUR_API_HOSTNAME}/register/device?token=" + deviceToken).openConnection();
-            }
-            catch (Exception exc) {
-                // Return exc to onPostExecute
-                return exc;
-            }
-
-            // Success
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Exception exc) {
-            // Failed?
-            if (exc != null) {
-                // Show error as toast message
-                Toast.makeText(getApplicationContext(), exc.toString(), Toast.LENGTH_LONG).show();
-                return;
-            }
-
-            // Succeeded, optionally do something to alert the user
-        }
     }
 }
 
