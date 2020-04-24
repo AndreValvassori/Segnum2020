@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         etRegisterEmail = findViewById(R.id.et_register_email);
         etRegisterSenha = findViewById(R.id.et_register_pass);
         etRegisterTelefone = findViewById(R.id.et_register_phone);
-        dpNascimento = findViewById(R.id.dp_register_birthday);
+//        dpNascimento = findViewById(R.id.dp_register_birthday);
         btRegister = findViewById(R.id.btn_register_register);
         btCancelar = findViewById(R.id.btn_register_cancel);
 
