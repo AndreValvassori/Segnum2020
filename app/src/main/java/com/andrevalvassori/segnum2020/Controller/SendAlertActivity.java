@@ -46,8 +46,8 @@ public class SendAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_alert);
 
-        etNome = findViewById(R.id.et_sendalert_Nome);
-        etDescricao = findViewById(R.id.et_sendalert_Descricao);
+        etNome = findViewById(R.id.et_sendalert_name);
+        etDescricao = findViewById(R.id.et_sendalert_descricao);
         spinTypes = findViewById(R.id.sp_sendalert_tipo);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
