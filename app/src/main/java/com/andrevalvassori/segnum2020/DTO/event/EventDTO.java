@@ -108,7 +108,7 @@ public class EventDTO {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", user=" + user +
-                ", eventTypeDTO=" + eventTypeDTO.toString() +
+                //", eventTypeDTO=" + eventTypeDTO.toString() +
 //                ", locationDTO=" + locationDTO.toString() +
                 '}';
     }

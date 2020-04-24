@@ -1,6 +1,9 @@
 package com.andrevalvassori.segnum2020.Services;
 
+import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,4 +21,7 @@ public interface UserService {
 
     @POST("user/login")
     Call<UserDTO> postUserLogin(@Body Object object);
+
+    @GET("user/{id}/events")
+    Call<List<EventDTO>> getMyEvents(@Path("id") Integer id);
 }
