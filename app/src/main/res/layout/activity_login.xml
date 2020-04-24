@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/meuemail"
                 android:text="master@segnum.com.br"
+                android:textColorHint="@color/greyColor"
                 android:textColor="@color/colorWhite"
                 android:inputType="textEmailAddress"
                 android:autofillHints="@string/meuemail"  />
@@ -42,6 +43,7 @@
                 android:id="@+id/et_login_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/greyColor"
                 android:text="123"
                 android:inputType="textPassword"
                 android:textColor="@color/colorWhite"
