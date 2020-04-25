@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity"
+    tools:context="com.andrevalvassori.segnum2020.Controller.RegisterActivity"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
@@ -62,11 +62,10 @@
             android:id="@+id/et_register_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nomecompleto"
+            android:hint="@string/datanascimento"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/greyColor"
-            android:inputType="text"
-            android:autofillHints="@string/meuemail"  />
+            android:inputType="text" />
 
         <Button
             android:layout_marginTop="8dp"
@@ -74,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedbutton"
-            android:onClick="btnLoginOnClick"
+            android:onClick="btnRegisterOnClick"
             android:textColor="@color/colorWhite"
             android:text="@string/registrar"
             android:textSize="18sp"

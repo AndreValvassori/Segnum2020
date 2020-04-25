@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.SendAlertActivity"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
@@ -19,52 +18,62 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="4dp"
             android:textColor="@color/greyColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selecione a categoria"></TextView>
-        <Spinner
-            android:id="@+id/sp_sendalert_tipo"
-            android:layout_marginTop="4dp"
-            android:tooltipText="Selecione a categoria"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:text="Casa"></TextView>
         <EditText
-            android:layout_marginTop="8dp"
-            android:id="@+id/et_sendalert_name"
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_my_address_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/nome"
+            android:hint="Endereço"
             android:textColorHint="@color/greyColor"
             android:textColor="@color/colorWhite"
             android:inputType="text"/>
-        <EditText
+        <TextView
             android:layout_marginTop="8dp"
-            android:id="@+id/et_sendalert_descricao"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/greyColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trabalho"></TextView>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_my_address_work"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Endereço"
             android:textColorHint="@color/greyColor"
             android:textColor="@color/colorWhite"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:minLines="6"
-            android:gravity="top|left"
-            android:maxLines="10"
-            android:scrollbars="vertical"
-            android:hint="Descrição"/>
+            android:inputType="text"/>
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/greyColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estudo"></TextView>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_my_address_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Endereço"
+            android:textColorHint="@color/greyColor"
+            android:textColor="@color/colorWhite"
+            android:inputType="text"/>
 
         <Button
             android:layout_marginTop="8dp"
-            android:id="@+id/btn_sendalert_send"
+            android:id="@+id/btn_salvar_enderecos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundedbutton"
+            android:background="@drawable/roundedbuttonoutbox"
             android:textColor="@color/colorWhite"
-            android:onClick="btnSendAlertOnClick"
-            android:text="Enviar Alerta"
+            android:text="Salvar"
             android:textSize="18sp"
             android:textStyle="bold" />
 

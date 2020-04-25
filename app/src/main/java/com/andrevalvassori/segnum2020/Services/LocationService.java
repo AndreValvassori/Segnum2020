@@ -1,6 +1,7 @@
 package com.andrevalvassori.segnum2020.Services;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
+import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 
 import java.util.List;
@@ -15,5 +16,8 @@ public interface LocationService {
 
     @POST("location/event/{id}")
     Call<Void> postLocation(@Path("id") Integer id, @Body Object object);
+
+    @POST("location/user/{id}")
+    Call<Void> postUserLocation(@Path("id") Integer id, @Body LocationNewDTO object);
 
 }

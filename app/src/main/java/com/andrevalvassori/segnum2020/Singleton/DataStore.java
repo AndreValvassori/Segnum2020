@@ -13,7 +13,9 @@ import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
 import com.andrevalvassori.segnum2020.Controller.MainFragments.EventsFragment;
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
+import com.andrevalvassori.segnum2020.DTO.location.LocationDTO;
 import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
+import com.andrevalvassori.segnum2020.DTO.location.LocationSimplifyDTO;
 import com.andrevalvassori.segnum2020.DTO.user.CredentialsDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
@@ -42,6 +44,11 @@ public class DataStore {
     public List<EventDTO> currentEvents = new ArrayList<EventDTO>();
     public List<EventDTO> currentMyEvents = new ArrayList<EventDTO>();
     public List<EventType> eventTypes = new ArrayList<EventType>();
+
+    public LocationSimplifyDTO homeAddress = new LocationSimplifyDTO();
+    public LocationSimplifyDTO schoolAddress = new LocationSimplifyDTO();
+    public LocationSimplifyDTO workAddress = new LocationSimplifyDTO();
+
     protected DataStore(){}
 
     public static DataStore sharedInstance(){
@@ -284,6 +291,11 @@ public class DataStore {
         });
     }
 
+    public void loadMyLocations(int id)
+    {
+        Call<List<LocationDTO>> myLocations = new RetrofitInitialization().getUserService().getMyLocations(id);
+    }
+
     public void sendEvent(EventNewSimplifyDTO event, LatLng local)
     {
         Call<Void> objectCall = new RetrofitInitialization().getEventService().postEvent(event);
@@ -334,6 +346,7 @@ public class DataStore {
                 if(response.code() == 200 || response.code() == 201)
                 {
                     Toast.makeText (context, "Localização criada com sucesso!", Toast.LENGTH_LONG).show();
+
                 }
             }
 

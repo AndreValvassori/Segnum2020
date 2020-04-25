@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:id="@+id/eventList_BGColor">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="4dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#eee"
+            android:scaleType="centerCrop"
+            android:id="@+id/imgEventPicture_List"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.4"
+            android:background="#000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:maxHeight="88dp">
+
+            <TextView
+                android:id="@+id/txtMyAddressName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titulo do Endereço"
+                android:textColor="#FFF"
+                android:textSize="14pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMyAddressTypeTransated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Endereço"
+                android:textColor="#FFF"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMyAddressType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Casa"
+                android:textColor="#FFF"
+                android:textSize="8pt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/divider" />
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+

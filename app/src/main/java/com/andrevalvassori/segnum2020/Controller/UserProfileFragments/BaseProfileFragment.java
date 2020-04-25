@@ -40,6 +40,10 @@ public class BaseProfileFragment extends Fragment {
             getActivity().finish();
         });
 
+        UserDTO usuario = DataStore.sharedInstance().getUser();
+        etPerfilNome.setText(usuario.getName());
+        etPerfilEmail.setText(usuario.getEmail());
+
         return view;
     }
 

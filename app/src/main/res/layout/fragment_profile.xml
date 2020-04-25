@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
@@ -33,7 +32,8 @@
             android:hint="@string/nomecompleto"
             android:textColorHint="@color/greyColor"
             android:textColor="@color/colorWhite"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:enabled="false"/>
 
         <TextView
             android:layout_marginTop="8dp"
@@ -50,6 +50,7 @@
             android:hint="@string/email"
             android:textColorHint="@color/greyColor"
             android:textColor="@color/colorWhite"
+            android:enabled="false"
             android:inputType="text"/>
 
         <Button
