@@ -1,5 +1,6 @@
 package com.andrevalvassori.segnum2020.Controller;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -38,6 +39,11 @@ public class LoginActivity extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle("Login - Segnum");
 
         etLogin = findViewById(R.id.et_login_email);
         etSenha = findViewById(R.id.et_login_pass);

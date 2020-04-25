@@ -35,7 +35,7 @@
         <activity
             android:name=".Controller$MainFragments$MapFragment"
             android:label="@string/title_activity_map_fragment" />
-        <activity android:name=".Controller.UserProfileFragments.ProfileFragment" />
+        <activity android:name=".Controller.UserProfileFragments.BaseProfileFragment" />
         <activity android:name=".Controller.MainFragments.EventsFragment" />
         <activity android:name=".Controller.MainActivity" />
         <activity android:name=".Controller.EventsActivity" />

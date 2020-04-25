@@ -1,6 +1,7 @@
 package com.andrevalvassori.segnum2020.Controller;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -52,6 +53,11 @@ public class SendAlertActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         DataStore.sharedInstance().setContext(this);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle("Registrar - Segnum");
 
         ArrayAdapter<EventType> typesAdapter = new ArrayAdapter<EventType>(this,
                 android.R.layout.simple_spinner_item, DataStore.sharedInstance().eventTypes);

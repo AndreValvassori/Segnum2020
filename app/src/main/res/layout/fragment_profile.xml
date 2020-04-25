@@ -4,6 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.UserProfileFragments.ProfileFragment">
+    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="32dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/greyColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meu Nome"></TextView>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_profile_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nomecompleto"
+            android:textColorHint="@color/greyColor"
+            android:textColor="@color/colorWhite"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="@color/greyColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meu E-mail"></TextView>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:id="@+id/et_profile_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColorHint="@color/greyColor"
+            android:textColor="@color/colorWhite"
+            android:inputType="text"/>
+
+        <Button
+            android:layout_marginTop="8dp"
+            android:id="@+id/btn_profile_deslogar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedbuttonoutbox"
+            android:textColor="@color/colorWhite"
+            android:text="Deslogar"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

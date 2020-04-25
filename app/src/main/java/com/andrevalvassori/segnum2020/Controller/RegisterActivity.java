@@ -1,5 +1,6 @@
 package com.andrevalvassori.segnum2020.Controller;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -43,6 +44,10 @@ public class RegisterActivity extends AppCompatActivity {
         btCancelar = findViewById(R.id.btn_register_cancel);
 
         DataStore.sharedInstance().setContext(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle("Registrar - Segnum");
 
         timerVerifyLogin = new Timer(true);
         timerVerifyLogin.scheduleAtFixedRate(new TimerTask()

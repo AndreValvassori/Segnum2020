@@ -1,120 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.PerfilActivity">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_centerVertical="false"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/ly_perfil_TopSegnum">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@android:drawable/ic_media_ff"/>
-        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsPerfil"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/titulo"
-            android:textAlignment="center"
-            android:layout_marginStart="10dp"
-            android:fontFamily="sans-serif-black"
-            android:textSize="30sp"
-            android:textColor="@android:color/holo_green_dark"/>
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/colorWhite"
+            app:tabSelectedTextColor="@color/colorAccent"
+            android:background="@color/colorPrimary"/>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/containerPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_perfil_newuser"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@id/ly_perfil_TopSegnum"
-        android:layout_marginTop="30dp"
-        android:text="Meu Perfil"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tv_register_email"
-        android:layout_width="match_parent"
-        android:layout_height="17dp"
-        android:layout_below="@+id/et_perfil_name"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/email"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
-
-    <EditText
-        android:id="@+id/et_perfil_email"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/tv_register_email"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="0dp"
-        android:textAlignment="textStart"
-        android:text=""
-        android:inputType="none"
-        android:hint="@string/meuemail"
-        android:focusable="false"
-        android:longClickable="false"
-        android:clickable="false"/>
-
-
-    <TextView
-        android:id="@+id/tv_register_name"
-        android:layout_width="match_parent"
-        android:layout_height="17dp"
-        android:layout_below="@+id/tv_perfil_newuser"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/nome"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textColor="@android:color/black"/>
-
-    <EditText
-        android:id="@+id/et_perfil_name"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/tv_register_name"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="50dp"
-        android:hint="@string/nomecompleto"
-        android:inputType="none"
-        android:text=""
-        android:textAlignment="textStart"
-        android:focusable="false"
-        android:longClickable="false"
-        android:clickable="false"
-        />
-
-
-    <Button
-        android:id="@+id/btn_register_register"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/roundedbutton"
-        android:backgroundTint="@android:color/holo_red_dark"
-        android:onClick="btnDeslogarOnClick"
-        android:text="Deslogar"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

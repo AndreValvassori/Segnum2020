@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             adapter.addFragment(myEventFragments, "Meus Alertas");
         }
         viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(1);
     }
 
     @Override

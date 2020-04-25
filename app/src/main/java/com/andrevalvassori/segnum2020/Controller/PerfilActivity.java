@@ -1,40 +1,67 @@
 package com.andrevalvassori.segnum2020.Controller;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TabHost;
 
-import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
+import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
+import com.andrevalvassori.segnum2020.Controller.UserProfileFragments.BaseProfileFragment;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
+import com.google.android.material.tabs.TabLayout;
 
 public class PerfilActivity extends AppCompatActivity {
 
-    EditText etPerfilNome;
-    EditText etPerfilEmail;
+    private static final int MENU_ITEM1 = R.id.mainMenu_Item1;
+
+    TabHost tabHostWindow = null;
+
+    private static final String TAG = "MainActivity";
+
+    private SectionsPageAdapter mSectionsPageAdapter;
+
+    private ViewPager mViewPager;
+
+    BaseProfileFragment baseProfileFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
 
-        etPerfilNome = findViewById(R.id.et_perfil_name);
-        etPerfilEmail = findViewById(R.id.et_perfil_email);
-
         DataStore.sharedInstance().setContext(this);
+        DataStore.sharedInstance().loadAllEvents();
 
-        UserDTO usuario = DataStore.sharedInstance().getUser();
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        etPerfilNome.setText(usuario.getName());
-        etPerfilEmail.setText(usuario.getEmail());
+        mViewPager = findViewById(R.id.containerPerfil);
+        setupViewPager(mViewPager);
+
+        TabLayout tabLayout = findViewById(R.id.tabsPerfil);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        FragmentManager manager = getSupportFragmentManager();
+        Intent intent = getIntent();
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle("Meu Perfil - Segnum");
 
     }
 
-    public void btnDeslogarOnClick(View view)
-    {
-        DataStore.sharedInstance().setUser(null);
-        finish();
+    private void setupViewPager(ViewPager viewPager) {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+        baseProfileFragment = new BaseProfileFragment();
+
+        adapter.addFragment(baseProfileFragment, "Informações Basicas");
+
+        viewPager.setAdapter(adapter);
     }
 }
