@@ -11,6 +11,7 @@ import android.widget.TabHost;
 
 import com.andrevalvassori.segnum2020.Adapter.SectionsPageAdapter;
 import com.andrevalvassori.segnum2020.Controller.UserProfileFragments.BaseProfileFragment;
+import com.andrevalvassori.segnum2020.Controller.UserProfileFragments.MyAddressFragment;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
 import com.google.android.material.tabs.TabLayout;
@@ -28,6 +29,7 @@ public class PerfilActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     BaseProfileFragment baseProfileFragment;
+    MyAddressFragment myAddressFragment;
 
 
     @Override
@@ -59,8 +61,10 @@ public class PerfilActivity extends AppCompatActivity {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         baseProfileFragment = new BaseProfileFragment();
+        myAddressFragment = new MyAddressFragment();
 
         adapter.addFragment(baseProfileFragment, "Informações Basicas");
+        adapter.addFragment(myAddressFragment, "Meus Endereços");
 
         viewPager.setAdapter(adapter);
     }

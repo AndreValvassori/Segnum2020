@@ -1,6 +1,7 @@
 package com.andrevalvassori.segnum2020.Services;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
+import com.andrevalvassori.segnum2020.DTO.location.LocationDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 
 import java.util.List;
@@ -24,4 +25,7 @@ public interface UserService {
 
     @GET("user/{id}/events")
     Call<List<EventDTO>> getMyEvents(@Path("id") Integer id);
+
+    @GET("user/{id}/locations")
+    Call<List<LocationDTO>> getMyLocations(@Path("id") Integer id);
 }
