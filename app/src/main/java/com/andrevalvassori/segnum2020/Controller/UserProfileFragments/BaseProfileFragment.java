@@ -30,20 +30,14 @@ public class BaseProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_events,container,false);
+        view = inflater.inflate(R.layout.fragment_profile,container,false);
 
         etPerfilNome = view.findViewById(R.id.et_profile_nome);
         etPerfilEmail = view.findViewById(R.id.et_profile_email);
         btnDeslogar = view.findViewById(R.id.btn_profile_deslogar);
-
-        btnDeslogar.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                DataStore.sharedInstance().setUser(null);
-                getActivity().finish();
-            }
+        btnDeslogar.setOnClickListener(v -> {
+            DataStore.sharedInstance().setUser(null);
+            getActivity().finish();
         });
 
         return view;
