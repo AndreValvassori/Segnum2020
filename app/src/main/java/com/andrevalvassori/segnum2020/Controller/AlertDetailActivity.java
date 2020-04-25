@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -62,10 +63,23 @@ public class AlertDetailActivity extends AppCompatActivity implements OnMapReady
                 Double.parseDouble(event.getLocationDTO().getLx()));
 
         gmap.moveCamera(CameraUpdateFactory.newLatLng(position));
-        gmap.addMarker(
+        /*gmap.addMarker(
                 new MarkerOptions().position(position
                 ).title(event.getName()).snippet(event.getDescription())
-        );
+        );*/
+
+        MarkerOptions marker = new MarkerOptions().position(position).title(event.getName()).snippet(event.getDescription());
+
+        if(event.getEventTypeDTO().getName().equals("Roubo "))
+            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gun_48px));
+        else if (event.getEventTypeDTO().getName().equals("Assassinato "))
+            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.poison_48px));
+        else if (event.getEventTypeDTO().getName().equals("Furto ") )
+            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mask_48px));
+
+        //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.my_marker_icon)));
+
+        gmap.addMarker(marker);
 
         try {
             // Customise the styling of the base map using a JSON object defined

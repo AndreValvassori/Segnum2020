@@ -26,6 +26,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -93,7 +94,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMaxZoomPreference(19f);
-        mMap.setMinZoomPreference(15f);
+        mMap.setMinZoomPreference(11f);
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -125,10 +126,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     Double.parseDouble(evento.getLocationDTO().getLx()));
             heatMapMarkers.add(position);
 
-            mMap.addMarker(
+            /*mMap.addMarker(
                     new MarkerOptions().position(position
                     ).title(evento.getName()).snippet(evento.getDescription())
-            );
+            );*/
+            MarkerOptions marker = new MarkerOptions().position(position).title(evento.getName()).snippet(evento.getDescription());
+
+            if(evento.getEventTypeDTO().getName().equals("Roubo "))
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.gun_48px));
+            else if (evento.getEventTypeDTO().getName().equals("Assassinato "))
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.poison_48px));
+            else if (evento.getEventTypeDTO().getName().equals("Furto ") )
+                marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.mask_48px));
+
+            //marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.my_marker_icon)));
+
+            mMap.addMarker(marker);
 
             if(i++ == DataStore.sharedInstance().currentEvents.size() - 1){
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(position));
