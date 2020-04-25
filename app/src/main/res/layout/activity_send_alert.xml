@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.andrevalvassori.segnum2020.Controller.LoginActivity"
+    tools:context="com.andrevalvassori.segnum2020.Controller.SendAlertActivity"
     android:background="@color/colorPrimaryDark">
 
     <LinearLayout
@@ -62,9 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/roundedbutton"
-            android:onClick="btnLoginOnClick"
             android:textColor="@color/colorWhite"
-            android:text="@string/registrar"
+            android:onClick="btnSendAlertOnClick"
+            android:text="Enviar Alerta"
             android:textSize="18sp"
             android:textStyle="bold" />
 
