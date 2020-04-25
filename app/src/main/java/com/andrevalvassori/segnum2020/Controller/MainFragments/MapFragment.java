@@ -135,30 +135,36 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
             Log.d("MapFragment","Event: "+evento.toString());
         }
-        insertHeatMap();
+            insertHeatMap();
+
+
     }
 
     public void insertHeatMap()
     {
-        int[] colors = {
-                Color.rgb(255, 211, 0), // yellow
-                Color.rgb(255, 0, 0)    // red
-        };
+        try {
+            int[] colors = {
+                    Color.rgb(255, 211, 0), // yellow
+                    Color.rgb(255, 0, 0)    // red
+            };
 
-        float[] startPoints = {
-                0.2f, 1f
-        };
-        Gradient gradient = new Gradient(colors, startPoints);
+            float[] startPoints = {
+                    0.2f, 1f
+            };
+            Gradient gradient = new Gradient(colors, startPoints);
 
-        mProvider = new HeatmapTileProvider.Builder()
-                .data(heatMapMarkers)
-                .gradient(gradient)
-                .build();
-        mProvider.setRadius(200);
+            mProvider = new HeatmapTileProvider.Builder()
+                    .data(heatMapMarkers)
+                    .gradient(gradient)
+                    .build();
+            mProvider.setRadius(200);
 
-        mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+            mOverlay = mMap.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
 
-        mProvider.setOpacity(0.5);
-        mOverlay.clearTileCache();
+            mProvider.setOpacity(0.5);
+            mOverlay.clearTileCache();
+        } catch (Exception e) {
+            Log.e(TAG, "Insert Heat Map Error: ", e);
+        }
     }
 }

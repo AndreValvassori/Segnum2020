@@ -8,14 +8,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrevalvassori.segnum2020.DTO.event.EventNewSimplifyDTO;
@@ -56,9 +59,21 @@ public class SendAlertActivity extends AppCompatActivity {
         ArrayAdapter<EventType> typesAdapter = new ArrayAdapter<EventType>(this,
                 android.R.layout.simple_spinner_item, DataStore.sharedInstance().eventTypes);
         typesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinTypes.setOnItemSelectedListener(spinnerSelector);
+
         spinTypes.setAdapter(typesAdapter);
+
+
     }
 
+    private AdapterView.OnItemSelectedListener spinnerSelector = new AdapterView.OnItemSelectedListener() {
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+        }
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+    };
     private boolean checkPermissions() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -147,5 +162,12 @@ public class SendAlertActivity extends AppCompatActivity {
     public void btnSendAlertOnClick(View view)
     {
         getLastLocation();
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+        ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
+        ((TextView) parent.getChildAt(0)).setTextSize(5);
+
     }
 }
