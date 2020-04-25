@@ -33,11 +33,11 @@ public class MyAddressFragment extends Fragment {
         btnSave = view.findViewById(R.id.btn_salvar_enderecos);
         btnSave.setOnClickListener(v -> {
         });
-
-        UserDTO usuario = DataStore.sharedInstance().getUser();
-        etHomeAddress.setText(usuario.getName());
-        etWorkAddress.setText(usuario.getEmail());
-        etSchoolAddress.setText(usuario.getName());
+//
+//        UserDTO usuario = DataStore.sharedInstance().getUser();
+//        etHomeAddress.setText(usuario.getName());
+//        etWorkAddress.setText(usuario.getEmail());
+//        etSchoolAddress.setText(usuario.getName());
 
         return view;
     }
