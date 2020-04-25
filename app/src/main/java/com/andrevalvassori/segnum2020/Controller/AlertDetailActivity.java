@@ -1,5 +1,6 @@
 package com.andrevalvassori.segnum2020.Controller;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -51,6 +52,10 @@ public class AlertDetailActivity extends AppCompatActivity implements OnMapReady
         mapView = findViewById(R.id.map_alertdetail_map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.setTitle(event.getName() + " - Segnum");
     }
 
     @Override

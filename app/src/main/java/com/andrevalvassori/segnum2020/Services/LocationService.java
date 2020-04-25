@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface LocationService {
@@ -19,5 +20,8 @@ public interface LocationService {
 
     @POST("location/user/{id}")
     Call<Void> postUserLocation(@Path("id") Integer id, @Body LocationNewDTO object);
+
+    @PUT("location/{id}")
+    Call<Void> putLocation(@Path("id") Integer id, @Body LocationNewDTO object);
 
 }

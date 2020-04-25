@@ -20,6 +20,13 @@ public class LocationDTO {
     public LocationDTO() {
     }
 
+    public LocationDTO(int id, String name, String lx, String ly) {
+        this.id = id;
+        this.name = name;
+        this.lx = lx;
+        this.ly = ly;
+    }
+
     public LocationDTO(int id, String name, String lx, String ly, LocationTypeDTO type, UserSimplifyDTO user) {
         this.id = id;
         this.name = name;
