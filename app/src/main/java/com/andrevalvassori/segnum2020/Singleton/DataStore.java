@@ -17,6 +17,7 @@ import com.andrevalvassori.segnum2020.DTO.location.LocationNewDTO;
 import com.andrevalvassori.segnum2020.DTO.user.CredentialsDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserDTO;
 import com.andrevalvassori.segnum2020.DTO.user.UserNewDTO;
+import com.andrevalvassori.segnum2020.Model.Event;
 import com.andrevalvassori.segnum2020.Model.EventType;
 import com.andrevalvassori.segnum2020.retrofift.RetrofitInitialization;
 import com.google.android.gms.maps.model.LatLng;
@@ -349,5 +350,13 @@ public class DataStore {
 
     public List<EventDTO> getMyEvents() {
         return currentMyEvents;
+    }
+
+    public EventDTO getCurrentEvent(int position) {
+        return currentEvents.get(position);
+    }
+
+    public EventDTO getMyEvent(int position) {
+        return currentMyEvents.get(position);
     }
 }

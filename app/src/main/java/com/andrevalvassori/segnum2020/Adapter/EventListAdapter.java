@@ -1,7 +1,9 @@
 package com.andrevalvassori.segnum2020.Adapter;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.andrevalvassori.segnum2020.Controller.AlertDetailActivity;
 import com.andrevalvassori.segnum2020.DTO.event.EventDTO;
 import com.andrevalvassori.segnum2020.R;
 import com.andrevalvassori.segnum2020.Singleton.DataStore;
@@ -49,6 +52,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 //        Drawable res = view.getResources().getDrawable(imageResource);
 //        holder.imgEventPicture.setImageDrawable(res);
         holder.imgEventPicture.setImageDrawable(null);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DataStore.sharedInstance().getContext(), AlertDetailActivity.class);
+                intent.putExtra("position", String.valueOf(position));
+                DataStore.sharedInstance().getContext().startActivity(intent);
+                Log.d("TAG",String.valueOf(position));
+            }
+        });
     }
 
     public void setEvents(List<EventDTO> events) {

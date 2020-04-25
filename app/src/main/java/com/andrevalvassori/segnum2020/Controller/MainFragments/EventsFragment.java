@@ -5,19 +5,26 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.andrevalvassori.segnum2020.Adapter.EventListAdapter;
+import com.andrevalvassori.segnum2020.Controller.MainActivity;
 import com.andrevalvassori.segnum2020.R;
+import com.andrevalvassori.segnum2020.Singleton.DataStore;
 
 public class EventsFragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     View view;
     private RecyclerView eventRecycler;
     private EventListAdapter adapter;
+    private GestureDetector gestureDetector;
 
     @Nullable
     @Override
@@ -40,6 +47,7 @@ public class EventsFragment extends Fragment {
         super.onResume();
         adapter.notifyDataSetChanged();
     }
+
 
     public RecyclerView getRecycler()
     {
