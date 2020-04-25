@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         mapFragment = new MapFragment();
         eventFragments = new EventsFragment();
 
-        adapter.addFragment(eventFragments, "Alertas");
+        adapter.addFragment(eventFragments, "Alertas Próximos");
         adapter.addFragment(mapFragment, "Mapa");
        
         if (DataStore.sharedInstance().getUser() != null/* || DataStore.sharedInstance().getUser().getId() == 0*/) {
