@@ -250,8 +250,11 @@ public class DataStore {
 
     public void loadMyEvents()
     {
+        if(usuario == null)
+            return;
+
         Log.d("DataStorage","loadMyEvents");
-        final Call<List<EventDTO>> userCall = new RetrofitInitialization().getEventService().getAllEvents();
+        final Call<List<EventDTO>> userCall = new RetrofitInitialization().getUserService().getMyEvents(DataStore.sharedInstance().usuario.getId());
         userCall.enqueue(new Callback<List<EventDTO>>() {
             @Override
             public void onResponse(Call<List<EventDTO>> call, Response<List<EventDTO>> response) {
@@ -268,8 +271,8 @@ public class DataStore {
                     DataStore.sharedInstance().currentMyEvents = response.body();
                     DataStore.sharedInstance().myEventChange = true;
                 }
-                Log.d("DataStorage","Events Loaded");
-                Log.d("DataStorage",currentEvents.toString());
+                Log.d("DataStorage","My Events Loaded");
+                Log.d("DataStorage",currentMyEvents.toString());
             }
 
             @Override
@@ -342,5 +345,9 @@ public class DataStore {
 
     public List<EventDTO> getEvents() {
         return currentEvents;
+    }
+
+    public List<EventDTO> getMyEvents() {
+        return currentMyEvents;
     }
 }

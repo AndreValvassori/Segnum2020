@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 /*DataStore.sharedInstance().LoadUser(userid);*/
                 DataStore.sharedInstance().loadAllEvents();
+                DataStore.sharedInstance().loadMyEvents();
                 DataStore.sharedInstance().enterWithLogin = true;
                 Intent intentMainActivity = new Intent(this, MainActivity.class);
                 this.startActivity(intentMainActivity);

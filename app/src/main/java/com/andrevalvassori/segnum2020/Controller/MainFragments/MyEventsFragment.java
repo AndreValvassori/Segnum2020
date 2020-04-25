@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrevalvassori.segnum2020.Adapter.EventListAdapter;
+import com.andrevalvassori.segnum2020.Adapter.MyEventListAdapter;
 import com.andrevalvassori.segnum2020.R;
 
 public class MyEventsFragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     View view;
     private RecyclerView eventRecycler;
-    private EventListAdapter adapter;
+    private MyEventListAdapter adapter;
 
     @Nullable
     @Override
@@ -25,7 +26,7 @@ public class MyEventsFragment extends Fragment {
         view = inflater.inflate(R.layout.my_fragment_events,container,false);
 
         eventRecycler = view.findViewById(R.id.myListEvents_fragment);
-        adapter = new EventListAdapter();
+        adapter = new MyEventListAdapter();
         eventRecycler.setAdapter(adapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
